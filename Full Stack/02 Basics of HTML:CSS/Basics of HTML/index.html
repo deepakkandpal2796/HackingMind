@@ -1,0 +1,260 @@
+<h2>Title Tag</h2>
+<title>HTML Basics</title>
+&lt;title&gt;HTML Basics&lt;/title&gt; <br/> <br/>
+This will give the tiltle to the web page. <br/> <br/>
+
+
+===============================================================<br/> <br/>
+
+<h2>Comments in HTML</h2> 
+You can comment anything in html and that will not print on the main page. In Vscode use command forward slash to comment, or use <!-- this --> (see the code on main page this is not visible )
+ <br/> <br/>
+===============================================================<br/> <br/>
+
+<h2>Tags</h2>
+
+If you write anthing on this page it will print on the main page but it is not editable <br/> <br/>
+But we want to edit the content, add colours and make it presentble so we use HTML tags insted normally just writting the words<br/> <br/>
+Tags tells  the page that how the content should appear on the main page eg in table form, in heading, paragraph format<br/> <br/>
+There are so many tags in HTML and we will write every thing inside a tag <br/> <br/>
+Eg <h3> This is heading 3 tag </h3>
+There are two type of tags <br/> <br/> 1. self closing (img, break) &lt;img src="" alt=""&gt; &lt;br&gt;<br/> <br/>2. open and close(normal tags)  &lt;h1&gt;   &lt;/h1&gt; <br/> <br/> 
+
+===============================================================<br/> <br/>
+
+<h2>Heading tag</h2>
+h7 is not a tag, h1 to h6 are only heading tags 
+<h1>H1</h1>
+&lt;h1&gt; H1 &lt;/h1&gt;
+<h2>H2</h2>
+<h3>H3</h3>
+<h4>H4</h4>
+<h5>H5</h5>
+<h6>H6</h6>
+<h7>H7</h7>
+
+
+===============================================================<br/> <br/>
+
+<h2>Block and Inline tags </h2>
+Inline tags are those which take only the area which is neended for the content it will not take the whole line <br/> <br/>
+Eg anchor tag is inline tag, img tag is inline tag. <br/> <br/>
+<a href="http://youtube.com" target="_blank" style="background: rgb(242, 255, 1);">Youtube </a>
+Blocks tags are those which take the whole line of the page, it dosen't depend on the content if the content is small also it dosent matter. <br/> <br/>
+Block element has an auto break at the end of the tag, that is why after heading I didnt use break tag in the end.
+<h2 style="background: rgb(242, 255, 1);">I am a Block Element</h2>
+What does it mean it will take the whole line ??<br/> <br/>
+eg : if we add background colour in a block tag then it will make the whole background of that colour<br/> <br/>
+but if we'll give background colour to inline element then it will only limited to the sapce that element taking<br/> <br/>
+
+=============================================================== <br/> <br/>
+
+<h2>Anchor Tag </h2>
+
+<a href="https://www.instagram.com/?hl=en" target="_blank" >Instagram</a> this tag we used to link somthing on the page<br/> <br/>
+An unvisited link is underlined and blue <br/> <br/>
+A visited link is underlined and purple <br/> <br/>
+An active link is underlined and red ( active means when you click it )<br/> <br/>
+You can change the link colour and all in CSS its not permanent.<br/> <br/>
+
+===============================================================<br/> <br/>
+
+<h2>Button Tag </h2>
+
+To create a Button we use button tag.<br/> <br/>
+It is a inline element.<br/> <br/>
+
+<button> Click me </button> <br/> <br/>
+We can do so many things with button when we learn JS and CSS.
+
+===============================================================<br/> <br/>
+
+<h2>Why Do We Need Tags </h2>
+
+<h4 style="background: rgba(44, 255, 40, 0.467)">With the help of CSS we can convert anchor tag to button and h5 to h1...So why do we need tags???</h4>
+The reason for this is to give the code meaning...you can use CSS and change the things, but your code should tell these things it self without being parsed...<br/> <br/>
+It make a structure out of your code which make it more understandable and readabable, when we use differnt tags.<br/> <br/>
+For example we can use "h6" as "h1" but "h1" shows the line or heading to be important.<br/> <br/>
+Another reason is SEO it helps in SEO google to find important topics or words in the page<br/> <br/>
+
+=============================================================== <br/> <br/>
+
+<h2>Image Tag</h2>
+<img src="./1183272.webp" alt="Iron Man 1" style="width: 15%;">
+<img src="./a548485bec66b6df6d8fea3ab5401917.jpeg" alt="Iron Man 2" style="width: 15%;">
+<img src="" alt="Iron Man 3 pic"> <br> <br>
+Image tag is an inline Element. <br><br>
+You can edit image using CSS. <br><br>
+Syntax - &lt;img src="" alt=""&gt;  <br><br>
+Where src is the source it can be a link or saved pic in the server <br><br>
+And alt is the Text which apper when the pic is unable to load. <br><br>
+
+=============================================================== <br/> <br/>
+
+<h2>Video Tag</h2>
+
+Video tag is not self closing tag <br><br>
+It use control artibute to play/pause, incr/dec volume functions. If you dont give control attribute, your video will beahave like a Thumbnail. <br><br>
+If you want to add Video in the video tag you have two option <br><br>
+1.  Add the video from the local server. <br><br>
+2.  Add the link of the video. ( by link of the video i dont mean url...url refers to the page not to the video , you need proper link of the with in mp4 format ) <br><br>
+<h4 style="background: rgba(44, 255, 40, 0.467)">How to add YouTube video to your page?? for that we use iframe tag to insert any webpage inside your page we use this tag. <br><br>
+( we will study this later.... just remember youtube wants its player and advertisement so, they dont give access to the videos, they give access to the web page) <br><br> 
+to add YouTube video go to video ->  click on Share -> click on embaded code and copy that iframe code to the html page ( see the code for this page to understand better )</h4>
+
+Syntax :  <br><br>
+&lt;video controls&gt; <br><br>
+    &lt;source src="link of the video"&gt; <br><br>
+&lt;/video&gt; <br><br>
+
+<video controls>
+    <source src="https://www.w3schools.com/html/mov_bbb.mp4">
+</video>
+
+<video controls>
+    <source src="./Frog - 113403.mp4"> 
+</video>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KT6z4qWMR_g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><br>
+
+=============================================================== <br/> <br/>
+
+<h2>Table Tag</h2>
+
+This is the Organisation of the data in proper way. <br><br>
+Most of the website are in the Table format. ( not now now we use grid because of its responsive properties) <br><br>
+Table is use to show data in organised form. <br><br>
+Tags of table  : <br><br>
+First you have to inclose all the data inside the table tag &lt;table&gt; &lt;/table&gt;<br><br>
+Second give cation to the table if you want.<br><br>
+Third use the <thead> </thead> tag to define the table heads  and <tbody> </tbody> tags to define the table data.<br><br>
+Fourth you can put data inside the table in row forms so we use <tr> </tr> tags for each row.<br><br>
+Fifth use <th> </th> tags for table head and <td> </td> tags for table data .<br><br>
+You can use <th> </th> tags in the table data also to highlight but we can highlight data from css so avoid doing this <br><br>
+<br><br>
+ 
+<!-- using css jsut to make borders -->
+<style>
+ table, th, td{
+    border: 1px black solid;
+ }
+ 
+</style>
+<table>
+    <caption>This is the table no .1 </caption>
+    <thead>
+        <tr>
+            <th>First</th>
+            <th>Second</th>
+            <th>Third</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Deepak</th>
+            <td>is a </td>
+            <td>good boy</td>
+        </tr>
+        <tr>
+            <th>Akansha</th>
+            <td>is a </td>
+            <td>good girl</td>
+        </tr>
+    </tbody>
+    
+</table>
+
+<br><br>
+=============================================================== <br/> <br/>
+
+You can use colspan to increase the column width and row span to increase the row width. <br><br>
+Here increase meaning it will take the position of the next element in the row or column accordingly. <br><br>
+
+<table>
+    <thead>
+        <tr>
+            <th>First</th>
+            <th>Second</th>
+            <th>Third</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th colspan="2">Deepak</th>
+            <td>is a  boy</td>
+        </tr>
+        <tr>
+            <th rowspan="2">Akansha</th>
+            <td>is a </td>
+            <td>good girl</td>
+        </tr>
+        <tr>
+            <td>is a </td>
+            <td>good girl</td>
+        </tr>
+    </tbody>
+    
+</table>
+
+<br><br>
+=============================================================== <br/> <br/>
+
+<h2> Forms / Create a text feild </h2>
+
+If you want to take input, you use form. ( login forms or anything ) <br><br>
+To use this we use the tag forms . <br><br>
+We use the input tag to input the text, password, date, email, file, number, submit <br><br>
+<h4 style="background: rgba(44, 255, 40, 0.467)">we have to define method of the form which is either get and post (we will study post and get deep in js) and the action of the from where the input of the form is redirected </h4>
+when we use the method of "GET" it will take the information from the form and write the information in the link which you have given in the action attribute. <br><br>
+But for all of this to happen you have to provides the name under which the information should be stored. <br><br>
+<h4 style="background: rgba(44, 255, 40, 0.467)">We are using GET method and, a hypothetical link /submit in "action" lets see what happen when we submit the form. <br><br>
+watch closely and look the the url when you filled the form and submit the information what happen is you information is somehow showing in the url of the page. (obviously you can hide the information ) <br><br>
+And this is how your form information actually goes to the backend.. we fetch the information out from the url. <br><br>
+
+eg type username : deepak@gmail.com and pass : Deepak (see the link you can see the value is being parsed into the link) </h4>
+The link show after submition of the form is the given below, and you can see the user and password clearly in it...this is the link we are redirected when we submit the form (basically its redirecting to action whih doesnot exist with the values)<br><br>
+http://127.0.0.1:5500/02%20Basics%20of%20HTML:CSS/Basics%20of%20HTML/submit?User=deepak%40gmail.com&Password=Deepak <br><br>
+Cannot GET /02%20Basics%20of%20HTML:CSS/Basics%20of%20HTML/submit (this is the page browser show beacuse there is no link /submit exist) <br><br>
+
+<form method = "GET" action="./submit" >
+    <div>
+        <input type="email" name= "User" placeholder="Username" required>
+    </div>
+    <div>
+        <input type="password" name="Password" placeholder="Password">
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+    
+</form>
+
+<br><br>
+=============================================================== <br/> <br/>
+
+<h2> DOCTYPE in HTML </h2>
+
+It is a valid html structure we use when we create HTML document. <br/> <br/>
+
+<img src="./Screenshot 2022-10-06 at 12.40.07 PM.png" alt="">
+
+ <!DOCTYPE html> 
+ <!-- ( Doctype tells you website us using HTML5 ) -->
+ <html lang="en"> 
+    <!-- (html tag is just a root container it does nothing)  -->
+ <head> 
+    <!-- (meta tags stylesheet title scripts all the things go into head tag) -->
+    <meta charset="UTF-8"> 
+    <!-- ( this meta tag is mandatory itherwise page will break to check just 
+        remove this tag and try to put emoji on the page ). -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- (title of the page)  -->
+ </head>
+ <body>
+    <!-- (body tag is the body of your page this goes on to the page ) -->
+ </body>
+ </html>
+

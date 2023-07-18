@@ -1,0 +1,197 @@
+/* basic setup  */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+h1, h2, h3, p , a{
+    text-align: left;
+    margin: 2rem 0rem 2rem 1rem ;
+}
+
+p{
+    font-size: 2rem;
+}
+/* Flex model  */
+
+.flexbox{
+    background: pink;
+    margin: 5rem;
+    padding: 2rem;
+    display: flex;
+}
+
+.flexbox div{
+    width: 10rem;
+    height: 10rem;
+    margin: 1rem;
+    background: rgb(255, 102, 102);
+    border: solid 1px black;
+}
+
+.flexbox .one{
+    background-color: rgb(111, 255, 0);
+}
+
+.flexbox .two{
+    background-color: rgb(238, 255, 0);
+}
+
+.flexbox .three{
+    background-color: rgb(0, 55, 255);
+}
+
+/* flex basis  */
+
+/* .basis {
+    flex-wrap: wrap;
+} */
+
+.basis div{
+    flex-basis: 30rem;
+    
+}
+
+/* Flex shrink  */
+
+.shrink div{
+    flex-basis: 30rem;
+    /* flex-shrink: 0;  */
+    /* this shrink zero means dont shrink  */
+}
+
+/* lets see shrink seprately  */
+
+.shrink .one {
+    flex-shrink: 0.5; 
+    /* this is shrinking 0.5 times faster of all (ye calculation kaise hogi disent matter) */
+}
+.shrink .two {
+    flex-shrink: 0;  
+    /* this is not shrinking  */
+}
+.shrink .three {
+    flex-shrink: 2; 
+    /* this is shrinking twice as all thats why it is shrinking faster than the others  */
+}
+
+/* flex grow */
+
+.grow .one{
+    flex-grow: 1;
+     /* this is grow 1 times faster of all (ye calculation kaise hogi disent matter) */
+}
+.grow .two{
+    flex-grow: 2;
+    /* this is grow 2 times faster of all when increase the screen size */
+}
+.grow .three{
+    flex-grow: 3;
+    /* this is grow 3 times faster of all when increase the screen size*/
+}
+
+/* flex wrap */
+
+.wrap{
+    flex-wrap: wrap;
+    
+}
+
+.wrap div{
+    flex-basis: 25rem;
+    flex-shrink: 0;
+}
+
+/* center  */
+.align {
+    align-items: center;
+    height: 40vh;
+ }
+.justify {
+    justify-content: center;
+    height: 40vh;
+ }
+ .center {
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+
+ .parent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ .image{
+    max-width: 100%;
+    height: auto;
+ }
+
+ /* Positioning Relative */
+
+ .html{
+    margin: 0 auto;
+    width: 60vw;
+    height: 60vh;
+    background: pink;
+ }
+.element1{
+    width: 20rem;
+    height: 20rem;
+    background: orangered;
+    position: relative;
+   left: 50%;
+}
+.element2{
+    width: 20rem;
+    height: 20rem;
+    background: skyblue;
+}
+
+/* Positioning Absolute */
+
+
+.html2{
+    margin: 0 auto;
+    width: 60vw;
+    height: 60vh;
+    background: pink;
+ }
+
+ .body2{
+    width: 40vw;
+    height: 40vh;
+    background-color: yellow;
+    margin: 0 auto;
+    position: relative;
+ }
+
+.element22{
+    width: 20rem;
+    height: 20rem;
+    background: skyblue;
+    position: absolute;
+    left: 50%; 
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.image{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+}
+.img{
+   max-width: 100%;
+   height: auto;
+    
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>CSS Properties</h1>
+    <p>First study Basics properties for eg: <br> Border box, rem, margin, padding, transform etc</p>
+    <h1>Flex Box</h1>
+    <p>Just used display flex property only and you can set the dirsction of the flex that is row or column</p>
+    <div class="flexbox">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+    </div>
+    <h1>Flex basis</h1>
+    <p>- Flex basis is nothing but the width of the flex item in the direction of the flex</p>
+    <p>- For example here we have given the width 20rem to the each box and when we give the flex basis of 30rem to every div then the size of the boxes become 300 px in the direction of the flex </p>
+    <p>- After flex basis the width stops working.</p>
+    <p>- Flex basis helps in wraping the element for example if the flex basis is 10rem then the element will start getting wrap when the width will become 10rem </p>
+    <p>- Here we have provided the flex wrap 10rem, so as soon as the screen size become so small that the element size shlould become less than 10rem it start getting wrap, and if we will still increase the screen size futrther it then the element start shrinking, but if flex basis is provided then it will wrap first ratehen then shink</p>
+    <p>- On the other hand just comment out the flex basis propety and see that it will not wrap it will shrink first and if we are still decreasing the size further it will then wrap.</p>
+    <div class="flexbox basis ">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+    </div>
+    <p>- Similarly if i change the direction of the flex then basis will happen in that direction just change it to column</p>
+    <p>- when direction row the width become irrelevant and when direction is column the heigth become irrelevant</p>
+    <h1>Flex shrink</h1>
+    <p>If you decrease the size of the window it will shrink the element as well...</p>
+    <p>But we can stop or change the speed of the shrink by using shrink </p>
+    <p>If we dont want the elemtent to shrink use flex-shrink: 0</p>
+    <p>We can define the shrink relative to each other for eg three is shrinking twice as two</p>
+    <div class="flexbox shrink ">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+    </div>
+    <h1>Flex grow</h1>
+    <p>The opposite of flex shrink is flex grow it will grow the element when the screen size increases. </p>
+    <p>Remember it will grow the element when size increasing, so while the screen size decreasing the element dont follow grow, hence the change in the size while decreasing the screen size is not happning because grow</p>
+    <div class="flexbox grow ">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+    </div>
+    <h1>Flex Wrap</h1>
+    <p>Lets say we need a specific width to the element and we provide it the flex shrink 0. Now if i want the screen size to be decreaser the content overflows</p>
+    <p>To make that work we use the wrap...it wil wrap the content to the next line</p>
+    <div class="flexbox wrap ">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+    </div>
+    <p>We can also use the wrap revese to reverse the direction of the wrap.</p>
+
+    <h1>Align Items & Justify Content</h1>
+    <p>Align items is in the perpendicular to the direction of the flow of the flex, and justify content is in the direction of the flow of flex</p>
+    <p>So for row direction in flex justify content used to center horizontally and align item is to center vertically</p>
+    <div class="flexbox align ">
+        <div class="one"></div>
+    </div>
+    <p>In above case the flex direction is in row so align item center making the element center in vertical diretion</p>
+    <div class="flexbox justify ">
+        <div class="one"></div>
+    </div>
+    <p>In above case the flex direction is in row so justify content making the element center in horizontal diretion</p>
+    <div class="flexbox center ">
+        <div class="one"></div>
+    </div>
+    <p>In above case both align item and justify content is center</p>
+
+    <h1>Flex</h1>
+    <p>To use flex grow shrink and basis in one property we use flex.</p>
+    <p> flex : 1 1 10rem we use this property like this genrally</p> 
+    <p>This means flex grow is 1 , flex shrink is 1 (which is default), flex basis is 10rem (wraping width and normal width) </p>
+
+    <h1>Responsive image</h1>
+    <p>To make the image responsive to the parent element we use a small trick</p>
+    <p>question: make the img fit to the parent element so it cant overflow when increase decrease size and make it in the center of the page</p>
+    <div class="parent">
+        <img src="https://cdn.britannica.com/49/182849-050-4C7FE34F/scene-Iron-Man.jpg" alt="" class="image">
+    </div>
+    <p>By making the max-width 100% and the heigth auto we can make the image responsive to the container </p>
+    <h1> Relative Position </h1>
+    <div class="html">
+        <h3>This is the HTML page</h3>
+        <div class="body">
+            <div class="element1">Element 1</div>
+            <div class="element2">Element 2</div>
+        </div>
+    </div>
+    <p>- In Relative positioning the element will not taken out from the normal document flow </p>
+    <p>The div 1(element 1) has posititon: relative and left: 50% but the div (element 2) below that is still there, it dosent get affected .</p>
+    <p>What does it means ?</p>
+    <p>The element 1 moved leftwards and there is no effect on the element 2 position, that simiply shows that when we use relative postion element will not move outside the flow of the  </p>
+    <p>- Relative is the type of positioning which is probably the most confusing and misused. What it really means is “relative to itself”. If you set position: relative; on an element but no other positioning attributes (top, left, bottom or right), it will have no effect on it’s positioning at all, it will be exactly as it would be if you left it as position: static;</p>
+    <p>- But if you do give it some other positioning attribute, say, top: 10px;, it will shift its position 10 pixels down from where it would normally be</p>
+    <p>- There are two other things that happen when you set position: relative; on an element that you should be aware of. </p>
+    <p>- One is that it introduces the ability to use z-index on that element, which doesn't work with statically positioned elements. Even if you don't set a z-index value, this element will now appear on top of any other statically positioned element</p>
+    <p>- The other thing that happens is it limits the scope of absolutely positioned child elements. Any element that is a child of the relatively positioned element can be absolutely positioned within that block.</p>
+    <div class="html2">
+        <h3>This is the HTML page</h3>
+        <div class="body2">
+            <div class="element22">Element</div>
+        </div>
+    </div>
+    <p>A page element with relative positioning gives you the control to absolutely position children elements inside of it.</p>
+    <div class="image">
+        <img src="./Screenshot 2022-10-13 at 4.43.03 PM.png" alt="" class="img" >
+        <img src="./Screenshot 2022-10-13 at 4.43.11 PM.png" alt="" class="img">
+    </div>
+    
+    <h1> Absolutely Position </h1>
+    <p>This is a very powerful type of positioning that allows you to literally place any page element exactly where you want it. You use the positioning attributes top, left, bottom, and right to set the location. Remember that these values will be relative to the next parent element with relative (or absolute) positioning. If there is no such parent, it will default all the way back up to the <html> element itself meaning it will be placed relative to the page itself.</p>
+    <p>The trade-off (and most important thing to remember) about absolute positioning is that these elements are removed from the flow of elements on the page. An element with this type of positioning is not affected by other elements and it doesn't affect other elements.</p>
+    <h1>CSS Grids</h1>
+    <p></p>
+</body> 
+</html>
