@@ -299,6 +299,7 @@ console.log(dayName);  // Output: "Wednesday"
 
 //* Statement:
 // A statement is a unit of code that performs an action. It represents a complete instruction or command.
+// Whenever something is ending with the semicollon ";" then it is considered as the statement.
 
 // Examples of JavaScript statements include:
 

@@ -53,3 +53,34 @@ const calculateAge3 = (birthYear, currentYear) => {
 const akanshasAge = calculateAge2(2001, 2023);
 
 console.log(`Akansha's Age ${akanshasAge}`);
+
+//* When we have one parameter then we can remove the bracket 
+const retirementAge = birthYear => 2060-birthYear;  // We write this function in one line.
+const myRetirementAge = retirementAge(2000);
+console.log(myRetirementAge);
+
+
+//* When we have no parameter 
+const wishBirthday = () => console.log("Happy Birthday");
+
+//* ===============Function Calling Another Function===============
+
+function cutFruitPieces(numberOffruit){
+    return 4*numberOffruit;
+}
+ 
+function foodProcessor(apples, oranges){
+    //* calling another function 
+    const piecesOfApple = cutFruitPieces(apples);
+    const piecesOfOranges = cutFruitPieces(oranges);
+
+    const starting = `The Food processor is making juice of ${apples} apples and ${oranges} oranges`;
+    const juice = `The apple is being cut into ${piecesOfApple} piece and the orange has been cut into ${piecesOfOranges} piece.`
+    const ready = `Your Juice is Ready`;
+
+}
+
+console.log(foodProcessor(3,4));
+
+//* ===============Arrays===============
+
