@@ -82,5 +82,46 @@ function foodProcessor(apples, oranges){
 
 console.log(foodProcessor(3,4));
 
-//* ===============Arrays===============
+//* ===============Arrays Basics===============
+
+//* To Store more than one value together we use array data-structure.
+
+//! Declaration 
+const friends = ['Deepak', 'Akansha', 'Vanshika'];
+console.log(friends);
+//! Literal syntax - new keyword in js is used to create instance of an object that has a constructor function 
+//*Basically a new empty object is crearted having the property of the parent object.
+const years = new Array(1991,1999,2000);
+
+
+//* Iterating the arrays - arrays can be iterated with there index number 
+console.log(years[0]); // 1991
+console.log(friends[1]); // Akansha 
+console.log(friends.length); // 3
+
+
+//! In js the array is treated as the object so we can use .length feature of array 
+typeof(friends); // object 
+
+//* Change/Mutating the array 
+friends[2] = 'Kabir'
+console.log(friends); // [ 'Deepak', 'Akansha', 'Kabir' ]
+//! ===============Important===============
+
+// Question : The array we declare is constant then how we are able to change the value of the array.
+// Answer : Const only work on the primitive DataType and array is not a primitive Datatype.
+//! what we cant do is we cant change the whole array 
+//friends = ['bob', 'smith']; //error
+
+//! We can put Array, anyvariable and expersions inside an array
+const firstName = 'Deepak'
+const personalInfo = [firstName, 2023-2000, friends];
+console.log(personalInfo); // [ 'Deepak', 23, [ 'Deepak', 'Akansha', 'Kabir' ] ]
+console.log(personalInfo[2]); // [ 'Deepak', 'Akansha', 'Kabir' ]
+console.log(personalInfo[2][1]); // Akansha
+
+
+//! We cant pass the array as an argument in the function 
+
+//* ===============Arrays Methods===============
 
