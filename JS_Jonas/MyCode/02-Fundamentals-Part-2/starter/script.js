@@ -175,8 +175,91 @@ console.log(deepak);
 //     friends: [ 'Akansha', 'Kabir' ]
 //   }
 //* ===============Object Dot Vs Bracket Notation===============
-//Iterating object can be done by 2 ways dot notation and the bracket notatiion.
+//! Iterating object can be done by 2 ways dot notation and the bracket notatiion.
 
-//dot notation we have to use the final property name not the computed property name 
 console.log(deepak.age); //23
 console.log(deepak['age']); //23
+
+//! Why we use the bracket notation? - Simply beacuse We want to compute the property name 
+//! In square bracket we can put any expression not possible with the dot notation.
+//! In dot notation we have to use the final property name and not the computed property name.
+const nameKey = 'Name';
+console.log(deepak['first'+nameKey]);
+console.log(deepak['last'+nameKey]);
+
+//! Let say you have to take value from the user first and then fetch the value from the object -> in this case we use the bracket notation 
+
+const intrestedIn = prompt('What you want to know about Deepak? (firstName, lastName, age, job, friends)');
+//console.log(deepak.intrestedIn)// this will give us an error we cant use the expression here 
+console.log(`${intrestedIn} : `+deepak[intrestedIn]);
+
+
+//* ===============Adding New Property to Object===============
+deepak.location = 'Delhi';
+deepak['email'] = 'deepak@abc.com'
+console.log(deepak);
+
+// {
+//     firstName: 'Deepak',
+//     lastName: 'Kandpal',
+//     age: 23,
+//     job: 'developer',
+//     friends: [ 'Akansha', 'Kabir' ],
+//     location: 'Delhi',
+//     email: 'deepak@abc.com'
+// }   
+
+//! Accessing the array element inside the object
+console.log(`My best friend is `+ deepak.friends[0]);
+// console.log(`My second best friend is `+ deepak[friends[1]]);// undefined 
+// console.log(`My second best friend is `+ deepak[friends][1]);// error
+
+
+//* ===============Object Methods===============
+//! any function which is attached to an object is called "Method"
+
+const privateInfo = {
+    firstName: 'Deepak',
+    lastName: 'Kandpal',
+    birthYear: 2000,
+    job: 'developer',
+    friends: ['Akansha', 'Kabir'],
+    canDrive: true,
+    
+    //!Step1
+    //instead of crearting the age key instead we are going to create a ibject method to calculate age 
+    // calcAge : function (birthYear){
+    //     return 2023-birthYear;
+    // }
+    //!Step2
+    //*We can use this keyword - it reffer to the current object you are in
+    // calcAge: function(){
+    //     return 2023-this.birthYear;
+    // }
+    //!Step3
+    //*Using the method again and again will make the program slow so instead of rerunning store in the object 
+    calcAge: function(){
+        this.age = 2023 - this.birthYear; // this will make a new key value pair inside the obejct 
+        return this.age //retruning the value is always a good practice 
+    },
+
+    //! challenge 
+    getSummay: function(){
+            // we have to call the calAge function here we can assume that it has been called earlier.
+            return `${this.firstName} is a ${this.calcAge()} and he has ${this.canDrive ? 'a' : 'no' } driving licence `
+    }
+
+}
+
+//console.log(privateInfo.calcAge(2000)); //23
+// console.log(privateInfo.calcAge()); //23
+console.log(privateInfo.calcAge()); // First we have to call the function to use the this key  -> 23
+console.log(privateInfo.age); // 23
+
+// challenge -> print this in console using the object 
+//Deepak is a 23 year old developer and he has a driving license.
+console.log(privateInfo.getSummay());
+
+//* ===============Loops===============
+
+
