@@ -125,3 +125,58 @@ console.log(personalInfo[2][1]); // Akansha
 
 //* ===============Arrays Methods===============
 
+const frnds = ['Akansha', 'kabir', 'Vanshika', 'Tulsi'];
+
+// Adding Element 
+frnds.push('Tushar'); // add to the back 
+console.log(frnds); //[ 'Akansha', 'kabir', 'Vanshika', 'Tulsi', 'Tushar' ]
+frnds.unshift('Mansi'); // add to the front 
+console.log(frnds); // [ 'Mansi', 'Akansha', 'kabir', 'Vanshika', 'Tulsi', 'Tushar' ]
+
+// Remove Element - These will return the element which is removed 
+// .pop() remove element from the back
+// .shift() remove element form the start 
+console.log(frnds.pop()); // Tushar
+console.log(frnds.shift()); // Mansi
+
+
+// Index of - To find the index of 
+console.log(frnds.indexOf('Tulsi')); // 3
+console.log(frnds.indexOf('Tushar')); // -1 (display -1 when there is no element present)
+
+// Includes 
+console.log(frnds.includes('kabir')); //true
+console.log(frnds.includes('Tushar')); //false 
+
+// We can use include method in conditions 
+if (frnds.includes('kabir')){
+    console.log("Yes kabir is my friend");
+}
+
+//! include does the straight equality which means 23 =! '23', kabir =! Kabir;
+
+//* ===============Object Basics===============
+//! Arrays are use for more ordered data and objects are used for more unstructured data 
+// object we define key value pair to store data.
+const deepak = {
+    firstName: 'Deepak',
+    lastName: 'Kandpal',
+    age: 2023 - 2000,
+    job: 'developer',
+    friends: ['Akansha', 'Kabir']
+}
+
+console.log(deepak);
+// {
+//     firstName: 'Deepak',
+//     lastName: 'Kandpal',
+//     age: 23,
+//     job: 'developer',
+//     friends: [ 'Akansha', 'Kabir' ]
+//   }
+//* ===============Object Dot Vs Bracket Notation===============
+//Iterating object can be done by 2 ways dot notation and the bracket notatiion.
+
+//dot notation we have to use the final property name not the computed property name 
+console.log(deepak.age); //23
+console.log(deepak['age']); //23
