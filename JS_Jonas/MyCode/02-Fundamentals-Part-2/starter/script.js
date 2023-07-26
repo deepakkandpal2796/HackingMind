@@ -189,9 +189,9 @@ console.log(deepak['last'+nameKey]);
 
 //! Let say you have to take value from the user first and then fetch the value from the object -> in this case we use the bracket notation 
 
-const intrestedIn = prompt('What you want to know about Deepak? (firstName, lastName, age, job, friends)');
+// const intrestedIn = prompt('What you want to know about Deepak? (firstName, lastName, age, job, friends)');
 //console.log(deepak.intrestedIn)// this will give us an error we cant use the expression here 
-console.log(`${intrestedIn} : `+deepak[intrestedIn]);
+// console.log(`${intrestedIn} : `+deepak[intrestedIn]);
 
 
 //* ===============Adding New Property to Object===============
@@ -260,6 +260,115 @@ console.log(privateInfo.age); // 23
 //Deepak is a 23 year old developer and he has a driving license.
 console.log(privateInfo.getSummay());
 
-//* ===============Loops===============
+//* ===============For Loops===============
 
+// Syntax 
+for (let i = 0; i <= 10; i++){
+    console.log(`Exercise Day ${i}`);
+}
 
+// Exercise Day 0
+// Exercise Day 1
+// Exercise Day 2
+// Exercise Day 3
+// Exercise Day 4
+// Exercise Day 5
+// Exercise Day 6
+// Exercise Day 7
+// Exercise Day 8
+// Exercise Day 9
+// Exercise Day 10
+
+for(let i=1; i <= 5; i++){
+    console.log(`--------------Exercise Set ${i}`)
+    for(let j = 1; j <= 5; j++){
+        console.log(`Rep {j} of Set {i}`)
+    }
+}
+
+// --------------Exercise Set 1
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// --------------Exercise Set 2
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// --------------Exercise Set 3
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// --------------Exercise Set 4
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// --------------Exercise Set 5
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+// Rep {j} of Set {i}
+
+//* ===============Looping array break and continue===============
+const deepakInfo = [
+    'Deepak',
+    'Kandpal',
+    2023-2000,
+    'Developer',
+    ['Akansha', 'Kabir'],
+    true
+]
+
+for(let i = 0; i < deepakInfo.length; i++){
+    console.log(deepakInfo[i], typeof deepakInfo[i])
+}
+// Deepak string
+// Kandpal string
+// 23 number
+// Developer string
+// [ 'Akansha', 'Kabir' ] object
+// true boolean
+
+//Creating a new array of datatype
+const deepakInfoDataType = [];
+for(let i = 0; i< deepakInfo.length; i++){
+    deepakInfoDataType.push(typeof deepakInfo[i]);
+}
+console.log(deepakInfoDataType);
+//[ 'string', 'string', 'number', 'string', 'object', 'boolean' ]
+
+//! continue is used to skip the iteration and break is used to break the looop 
+//! return statement also act like break 
+
+//* ===============While Loops===============
+
+// In this we only declare the conditon in the bracket 
+
+let rep = 1;
+while ( rep < 11){
+    console.log(rep);
+    rep++;
+}
+
+//Make a dice which only rolls when number is not 6 and when 6 comes it gets end 
+
+let dice = Math.trunc(Math.random()*6) + 1
+console.log(dice);
+
+if( dice == 6){
+    console.log('Please roll the dice again ')
+}
+
+while(dice != 6){
+    console.log(`You rolled a ${dice}`);
+    dice = Math.trunc(Math.random() * 6) + 1;
+    if (dice === 6) console.log('Loop is about to end...');
+}
