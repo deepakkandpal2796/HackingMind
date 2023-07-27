@@ -41,44 +41,89 @@
 // Remember using the arrow function we can use the this keyword hence we can access other properties inside the object .
 //here the object is the elements in the HTML 
 
-//*=============Buildin the Game===============
+//*=============Building the Game===============
+
+//=======================Variable=======================
+
 
 //Score Variable
 let score = 20;
-
-//Element Selected
-let currentScore = Number(document.querySelector('.score').innerHTML);
-
+// HighScore
+let highScore = 0;
 //Random Number 
-const secretNumber = Math.trunc(Math.random()*20)+1;
-document.querySelector('.number').innerHTML = secretNumber;
+let secretNumber = Math.trunc(Math.random()*20)+1;
 
-//Check Button 
+//=======================Functions=======================
+
+//Score function - Score should decrease as the guess is wrong, and when the score is 0 then show you lost.
+const scoreDecrease = () => {
+    const playerScore = document.querySelector('.score').innerHTML;
+    if(playerScore <= 0){
+        displayMessage('You lost, Try again');
+        bodyColour('#ff3d3d')
+        document.querySelector('.number').innerHTML = secretNumber;
+        return 0;
+    }
+    score--;
+    document.querySelector('.score').innerHTML = score;   
+}
+
+// Display message functions - Display the message 
+const displayMessage = (message) => document.querySelector('.message').innerHTML = message;
+
+//Dispaly HighScore function - display the highscore
+const displayHighScore = function(){
+    if(score > highScore){
+        document.querySelector('.highscore').innerHTML = score;
+    }
+}
+
+//Secret Number Generation Function
+const secretNumberGeneration = () => secretNumber = Math.trunc(Math.random()*20)+1;
+
+//Background Colour set 
+const bodyColour = (colour) =>  document.body.style.backgroundColor = colour;
+
+//=======================Events=======================
+
+//Check Button event 
 document.querySelector('.check').addEventListener('click', () => {
     const guess = Number(document.querySelector('.guess').value);
     console.log(guess, typeof guess);
 
     //If there is no value in the guess
     if(!guess){
-        document.querySelector('.message').innerHTML = '⛔ No Number!'
-    }else if(guess === secretNumber){
-        document.querySelector('.message').innerHTML = '🎉 Congratulations'
-    }else if(guess > secretNumber){
-        document.querySelector('.message').innerHTML = '📈 To High';
-        scoreDecrease(); //Score should decrease as the guess is wrong.
-    }else{
-        document.querySelector('.message').innerHTML = '📉 To Low';
-        scoreDecrease(); //Score should decrease as the guess is wrong.
+        displayMessage('⛔ No Number!')
+    }
+    else if(guess === secretNumber){
+        displayMessage('🎉 Congratulations');
+        document.querySelector('.number').innerHTML = secretNumber; 
+        displayHighScore();
+        bodyColour('#68d834')
+        secretNumberGeneration();
+    }
+    else if(guess > secretNumber){
+        displayMessage('📈 To High')
+        scoreDecrease(); 
+    }
+    else{
+        displayMessage('📉 To Low')
+        scoreDecrease(); 
     }
 })
 
-//Score
-const scoreDecrease = () => {
-    const playerScore = document.querySelector('.score').innerHTML;
-    if(playerScore <= 0){
-        
-    }
-    score--;
+//Try again event
+document.querySelector('.again').addEventListener('click', () => {
+    score = 20;
     document.querySelector('.score').innerHTML = score;
-    
-}
+    bodyColour('#222')
+    document.querySelector('.number').innerHTML = '?';
+    displayMessage("Start guessing...")
+    document.querySelector('.guess').value = " ";
+    secretNumberGeneration();
+})
+
+
+
+
+
