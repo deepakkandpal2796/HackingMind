@@ -27,14 +27,9 @@ let activePlayer = 0;
 
 //Function 
 const switchPlayer = () => {
-    //*remove active player class 
-    document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
-    //*make current score zero
-    document.getElementById(`current--${activePlayer}`).innerHTML = 0;
-    //*change the active player
     activePlayer = activePlayer === 0 ? 1 : 0;
-    //*add the active player class to other player 
-    document.querySelector(`.player--${activePlayer}`).classList.add('player--active')
+    player0El.classList.toggle('player--active');
+    player1El.classList.toggle('player--active');
 }
 
 //Events 
@@ -55,11 +50,18 @@ btnRoll.addEventListener('click', function (){
     else{
         //* 4. when its 1 then make the current score 0 and switch the active player 
         currentScore = 0;
+        // //*remove active player class 
         // document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+        // //*make current score zero
         // document.getElementById(`current--${activePlayer}`).innerHTML = 0;
+        // //*change the active player
         // activePlayer = activePlayer === 0 ? 1 : 0;
+        // //*add the active player class to other player 
         // document.querySelector(`.player--${activePlayer}`).classList.add('player--active')
-        switchPlayer();
+        // switchPlayer();
+        activePlayer = activePlayer === 0 ? 1 : 0;
+        player0El.classList.toggle('player--active');
+        player1El.classList.toggle('player--active');
     }
 });
 
