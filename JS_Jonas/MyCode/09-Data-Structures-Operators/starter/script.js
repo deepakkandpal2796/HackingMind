@@ -330,3 +330,68 @@ add(...addArr)// 27
 // Using rest operator we are not limiting arguments in the function, can use as many as we want.
 restaurant.orderPizza('mushroom', 'olivs', 'cheeze', 'spices'); // mushroom [ 'olivs', 'cheeze', 'spices' ]
 restaurant.orderPizza('mushrooom'); // mushrooom []
+
+
+//? =============== Short Circuiting (&& and ||) ===============
+
+// Conditional Statemeents(||, &&)
+// 1) They can use "ANY datatype" for comparision
+// 2) They return "ANY datatype" (both truthy and falsy value)
+// 3) They use short-circuiting. (Return the desired value as soon as statement sees it)
+
+//? ===============Conditional OR===============
+console.log( 3 || 'Deepak') // 3
+// both are truthy values so it uses shortCircuiting and return 3
+console.log("" || 'Deepak' ) //Deepak
+// "" is a falsy value so it goes to the next value and check if it is truthy or not.
+console.log( true || 0); //true
+// we can use any datatype here bolleans and number.
+console.log(undefined || null) //null
+// Both are falsy values so it return "ANY datatype" check all the values and return.
+
+console.log(undefined || 0 || '' || 'Hello' || 23 || null); // Hello using shortcircuiting 
+
+//? =============== Practical Application ===============
+// restaurant.numGuests = 23;
+restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10; 
+// if restaurant.numGuests = " " then put 10 there.
+console.log(`guests1 : ${guests1}`);
+
+//New approach 
+const guests2 = restaurant.numGuests || 10;
+console.log(`guests2 : ${guests2}`);
+
+// But there is a problem in both if restaurant.numGuests = 0 then also it will give 10 in return because these ternary and the conditional operator works on the falsy and truthy value,
+
+//? ===============Nullish Coalescing ===============
+//! This will only consider the nullish value not the falsy value 0 is the falsy value but not the nullish value. 
+//! Nullish value are null and undefined.
+//! The nullish coalescing operator can be seen as a special case of the logical OR (||) operator. 
+const guests3 = restaurant.numGuests ?? 10
+console.log(`guests3 : ${guests3}`);
+
+//? ===============Conditional AND===============
+
+console.log(0 && 'Deepak'); // 0 
+// here && use short cuircuiting as 0 is a falsy value so it ends there
+console.log(7 && 'Deepak');
+// 1st is truth so it will move to the 2nd one to check and return that
+console.log(null && 'Deepak');
+// here && use short cuircuiting as null is a falsy value so it ends there
+
+//? =============== Practical Application ===============
+// console.log(restaurant.orderPizza)//! [Function: orderPizza]
+if(restaurant.orderPizza){ // we are checking if this method in the object exists
+    restaurant.orderPizza('mushroom', 'olivs', 'cheeze'); // mushroom [ 'olivs', 'cheeze' ]
+}
+
+//New approach
+restaurant.orderPizza && restaurant.orderPizza('mushroom', 'olivs', 'cheeze'); // mushroom [ 'olivs', 'cheeze' ]
+
+// HERE WE CANT USE NULLISHING OPERATOR ITS ONLY FOR OR(||).
+// If you want to count 0 as an truthy value you have to put or condition to this 
+
+//! dont replace all your code with this Short Circuiting (&& and ||), this will make your code very hard to read.
+
+//? =============== Logical Assignment ===============
