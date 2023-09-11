@@ -143,6 +143,8 @@ const {fri : {open, close}} = openingHours;
 // console.log(fri, open, close);in this case fri is not a varible here only open and close are the variable 
 console.log(open, close); // 11 23
 
+//=================FUNCTIONS==============================
+
 //? Destructuring Methods in objects
 // many time we have alot of parameter for a function and its very hard to find the order of the parameter 
 // Instead of finding the parameter manually we can just pass the object to the function as an argumnet 
@@ -153,7 +155,7 @@ console.log(open, close); // 11 23
 // }
 
 // this looks like we are passing four arguments but its not like that we are just passing one object and this function will get the value by destructuring the object.
-//An the order of the argument can be anything the function we destructre it itself 
+//! the order of the argument can be anything the function we destructre it itself 
 
 restaurant.orderDelivery({
   time: '12:30',
