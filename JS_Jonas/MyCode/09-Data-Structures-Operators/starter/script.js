@@ -397,3 +397,49 @@ restaurant.orderPizza && restaurant.orderPizza('mushroom', 'olivs', 'cheeze'); /
 //! dont replace all your code with this Short Circuiting (&& and ||), this will make your code very hard to read.
 
 //? =============== Logical Assignment ===============
+
+const restaurant1 = {
+  restName: 'Capri',
+  numGuests: 0, 
+}
+const restaurant2 = {
+  restName: 'La Praza',
+  owner: 'Rossi',
+}
+
+//? We want to set up the value numGuests in both the restaurant1 and 2.
+
+//Older way
+// restaurant1.numGuests = restaurant1.numGuests || 10;
+// restaurant2.numGuests = restaurant2.numGuests || 10;
+// console.log('restaurant1: ', restaurant1); // restaurant1:  { restName: 'Capri', numGuests: 20 }
+// console.log('restaurant2: ', restaurant2); // restaurant2:  { restName: 'La Praza', owner: 'Rossi', numGuests: 10 }
+
+//Using logical assignment 
+// restaurant1.numGuests ||= 10;
+// restaurant2.numGuests ||= 10;
+// console.log('restaurant1: ', restaurant1); // restaurant1:  { restName: 'Capri', numGuests: 20 }
+// console.log('restaurant2: ', restaurant2); // restaurant2:  { restName: 'La Praza', owner: 'Rossi', numGuests: 10 }
+
+//The problem with the logical operator again comes that they will take 0 as falsy value and whrn numGuests is 0 they will set the default value instead of 0.
+restaurant1.numGuests ??= 10;
+restaurant2.numGuests ??= 10;
+console.log('restaurant1: ', restaurant1); // restaurant1:  { restName: 'Capri', numGuests: 00 }
+console.log('restaurant2: ', restaurant2); // restaurant2:  { restName: 'La Praza', owner: 'Rossi', numGuests: 10 }
+
+//Now We want to replace the string of the owner with the string ANONYMOUS
+restaurant1.owner &&= `<ANONYMOUS>`;
+restaurant2.owner &&= `<ANONYMOUS>`;
+console.log('restaurant1: ', restaurant1); // restaurant1:  { restName: 'Capri', numGuests: 0 }
+console.log('restaurant2: ', restaurant2); // restaurant2:  { restName: 'La Praza', owner: '<ANONYMOUS>', numGuests: 10 }
+
+//! BRIEF 
+// restaurant1.owner &&= `<ANONYMOUS>`; 
+// this is basically -> restaurant1.owner = restaurant1.owner && `<ANONYMOUS>`;
+//! this is basically checking the value of the owner in restaurant if that value holds then it checks the next condition in the restaurant1 there is no owner mentoined, hence it will not run and there is now owner is created.
+//! in the restaurant2 there is already an owner so the 1st condition holds true and 2nd is a string which is a truthy value hence && use the short-ciructing and return the ANONYMOUS string.
+
+//! MOST IMP
+//! TO CHECK THE VALUE ALREADY EXSIT IF NOT THEN TO ADD NEW DEFAULT VALUE USE ||.
+//! TO CHANGE THE EXISTING VALUE USE &&.(THIS DONT ADD NEW KEY VALUE JUST CHANGE THE EXISTING VALUE)
+

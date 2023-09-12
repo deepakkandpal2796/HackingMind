@@ -35,4 +35,92 @@ const restaurant = {
   };
   
 //? ===============  Looping Arrays: The for-of Loop ===============
+//! In forof loop we can use the break and continue statements in like in for and while.
 
+//? Iterating Element 
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+for (const item of menu) {
+  console.log(item);
+// Output
+'Focaccia'
+'Bruschetta'
+'Garlic Bread'
+'Caprese Salad'
+'Pizza'
+'Pasta'
+'Risotto'
+}
+
+//? Iterating Index (iterting index in for)
+for (const item of menu.entries()) {
+  console.log(item);
+  //Output
+// [ 0, 'Focaccia' ]
+// [ 1, 'Bruschetta' ]
+// [ 2, 'Garlic Bread' ]
+// [ 3, 'Caprese Salad' ]
+// [ 4, 'Pizza' ]
+// [ 5, 'Pasta' ]
+// [ 6, 'Risotto' ]
+}
+console.log(menu.entries()); // Object [Array Iterator] {}
+
+console.log([...menu.entries()]); //! Check this in console
+// It retrun the array which contain the array of 2 containing the index and the value.
+//Output
+
+// [Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2)] // which when expainds gives
+
+// [
+//  0: [ 0, 'Focaccia' ],
+//  1: [ 1, 'Bruschetta' ],
+//  2: [ 2, 'Garlic Bread' ],
+//  3: [ 3, 'Caprese Salad' ],
+//  4: [ 4, 'Pizza' ],
+//  5: [ 5, 'Pasta' ],
+//  6: [ 6, 'Risotto' ]
+// ]
+
+
+for (const item of menu.entries()) {
+  console.log( `${item[0] + 1}: ${item[1]}`);
+}
+// o/p 
+// 1: Focaccia
+// 2: Bruschetta
+// 3: Garlic Bread
+// 4: Caprese Salad
+// 5: Pizza
+// 6: Pasta
+// 7: Risotto
+
+//! lets do this with destructuring 
+for( const [itemNo, itemVal] of menu.entries()){
+  console.log(itemNo, itemVal)
+}
+// o/p:
+// 0 Focaccia
+// 1 Bruschetta
+// 2 Garlic Bread
+// 3 Caprese Salad
+// 4 Pizza
+// 5 Pasta
+// 6 Risotto
+
+for( const [itemNo, itemVal] of menu.entries()){
+  console.log( `${itemNo + 1}: ${itemVal}`);
+}
+//o/p:
+// 1: Focaccia
+// 2: Bruschetta
+// 3: Garlic Bread
+// 4: Caprese Salad
+// 5: Pizza
+// 6: Pasta
+// 7: Risotto
+
+//4804
+//onChangeVehicleCategory
+// select distinct vehicle_type from mdm_vehicle_gaps where vehicle_cat_id='q_collateral_vehicle_vehicle_category.value' and loantypeid ='q_loandetails_consumerloanid.value'
+//q_collateral_vehicle_vehicle_type
+// select distinct vehicle_category_name, vehicle_cat_id  from mdm_vehicle_gaps where loantypeid ='q_loandetails_consumerloanid.value'
