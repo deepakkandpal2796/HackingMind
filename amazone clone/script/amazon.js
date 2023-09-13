@@ -86,7 +86,7 @@ products.forEach((product) => {
         Added
         </div>
 
-        <button class="add-to-cart-button button-primary">
+        <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">
         Add to Cart
         </button>
     </div>
@@ -96,3 +96,42 @@ products.forEach((product) => {
 //===========ADDING DIV TO CONTAINER===============
 
 document.querySelector('.js-products-grid').innerHTML = productHTML;
+
+//===========ADDING CLICK EVENT ON ADD TO CART ===============
+
+//STEP1: Add click event on all the add to cart button.
+//STEP2: How we going to know Which product is clicked? for that add data-attributes 
+//STEP3: Push the add to cart element in the cart array as an object with the name and the quantity.
+//STEP4: for the same product clicked again we dont want to create a new object in the cart list. We just want to increase the quantity of the object.
+//STEP 5: Two products can have the same name so we are using the product ID instead of the name.
+
+document.querySelectorAll('.js-add-to-cart').forEach((button)=> {
+    button.addEventListener('click', () => {
+
+        // console.log(button); //! <button class="add-to-cart-button button-primary js-add-to-cart"> Add to Cart </button>
+        
+        console.log(button.dataset) // it return the object of all the datasets present on that selected html.
+
+        const productId = button.dataset.productId;
+        
+        let matchingId;
+        //item is the object in the cart array and we are storing that object inside the productName.
+        cart.forEach((item) => {
+            if(productId === item.productId){
+                matchingId = item;
+                console.log(matchingId);
+            }
+        })
+
+        if(matchingId){
+            matchingId.quantity += 1;
+        }else{
+            cart.push({
+                productId: productId,
+                quantity: 1,
+            })
+        }
+
+        
+    })
+})
