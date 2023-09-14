@@ -110,16 +110,16 @@ document.querySelectorAll('.js-add-to-cart').forEach((button)=> {
 
         // console.log(button); //! <button class="add-to-cart-button button-primary js-add-to-cart"> Add to Cart </button>
         
-        console.log(button.dataset) // it return the object of all the datasets present on that selected html.
+        //console.log(button.dataset) //!it return the object of all the datasets present on that selected html.
 
         const productId = button.dataset.productId;
         
         let matchingId;
-        //item is the object in the cart array and we are storing that object inside the productName.
+        
         cart.forEach((item) => {
             if(productId === item.productId){
                 matchingId = item;
-                console.log(matchingId);
+                //console.log(matchingId);//! item is the object in the cart array and we are storing that object inside the productName.
             }
         })
 
@@ -131,7 +131,12 @@ document.querySelectorAll('.js-add-to-cart').forEach((button)=> {
                 quantity: 1,
             })
         }
+        let cartQuantity = 0;
 
-        
+        cart.forEach((item) => {
+            cartQuantity += item.quantity
+        })
+
+        document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
     })
 })

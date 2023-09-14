@@ -119,8 +119,3 @@ for( const [itemNo, itemVal] of menu.entries()){
 // 6: Pasta
 // 7: Risotto
 
-//4804
-//onChangeVehicleCategory
-// select distinct vehicle_type from mdm_vehicle_gaps where vehicle_cat_id='q_collateral_vehicle_vehicle_category.value' and loantypeid ='q_loandetails_consumerloanid.value'
-//q_collateral_vehicle_vehicle_type
-// select distinct vehicle_category_name, vehicle_cat_id  from mdm_vehicle_gaps where loantypeid ='q_loandetails_consumerloanid.value'
