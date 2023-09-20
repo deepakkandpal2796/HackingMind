@@ -443,3 +443,88 @@ console.log('restaurant2: ', restaurant2); // restaurant2:  { restName: 'La Praz
 //! TO CHECK THE VALUE ALREADY EXSIT IF NOT THEN TO ADD NEW DEFAULT VALUE USE ||.
 //! TO CHANGE THE EXISTING VALUE USE &&.(THIS DONT ADD NEW KEY VALUE JUST CHANGE THE EXISTING VALUE)
 
+
+//? ===============  Looping Arrays: The for-of Loop ===============
+//! In forof loop we can use the break and continue statements in like in for and while.
+
+//? Iterating Element 
+const Newmenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+for (const item of Newmenu) {
+  console.log(item);
+// Output
+'Focaccia'
+'Bruschetta'
+'Garlic Bread'
+'Caprese Salad'
+'Pizza'
+'Pasta'
+'Risotto'
+}
+
+//? Iterating Index (iterting index in for)
+for (const item of Newmenu.entries()) {
+  console.log(item);
+  //Output
+// [ 0, 'Focaccia' ]
+// [ 1, 'Bruschetta' ]
+// [ 2, 'Garlic Bread' ]
+// [ 3, 'Caprese Salad' ]
+// [ 4, 'Pizza' ]
+// [ 5, 'Pasta' ]
+// [ 6, 'Risotto' ]
+}
+console.log(Newmenu.entries()); // Object [Array Iterator] {}
+
+console.log([...Newmenu.entries()]); //! Check this in console
+// It retrun the array which contain the array of 2 containing the index and the value.
+//Output
+
+// [0Array(2), 1Array(2), 2Array(2), 3Array(2), 4Array(2), 5Array(2), 6Array(2)] // which when expainds gives
+
+// [
+//  0: [ 0, 'Focaccia' ],
+//  1: [ 1, 'Bruschetta' ],
+//  2: [ 2, 'Garlic Bread' ],
+//  3: [ 3, 'Caprese Salad' ],
+//  4: [ 4, 'Pizza' ],
+//  5: [ 5, 'Pasta' ],
+//  6: [ 6, 'Risotto' ]
+// ]
+
+
+for (const item of Newmenu.entries()) {
+  console.log( `${item[0] + 1}: ${item[1]}`);
+}
+// o/p 
+// 1: Focaccia
+// 2: Bruschetta
+// 3: Garlic Bread
+// 4: Caprese Salad
+// 5: Pizza
+// 6: Pasta
+// 7: Risotto
+
+//! lets do this with destructuring 
+for( const [itemNo, itemVal] of Newmenu.entries()){
+  console.log(itemNo, itemVal)
+}
+// o/p:
+// 0 Focaccia
+// 1 Bruschetta
+// 2 Garlic Bread
+// 3 Caprese Salad
+// 4 Pizza
+// 5 Pasta
+// 6 Risotto
+
+for( const [itemNo, itemVal] of Newmenu.entries()){
+  console.log( `${itemNo + 1}: ${itemVal}`);
+}
+//o/p:
+// 1: Focaccia
+// 2: Bruschetta
+// 3: Garlic Bread
+// 4: Caprese Salad
+// 5: Pizza
+// 6: Pasta
+// 7: Risotto
