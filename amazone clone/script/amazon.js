@@ -1,6 +1,8 @@
 
-import {cart} from '../data/cart.js'
+import {cart, addToCart} from '../data/cart.js'
 import {products} from '../data/products.js' 
+import { formatCurrency } from '../utils/money.js';
+
 // import {cart as myCart} from '../data/cart' //! we we want to use the different name.
 
 //steps to make the project 
@@ -66,7 +68,7 @@ products.forEach((product) => {
         </div>
 
         <div class="product-price">
-        ₹${(product.pricePaise /100).toFixed(2)}
+        ₹${formatCurrency(product.pricePaise)}
         </div>
 
         <div class="product-quantity-container">
@@ -110,6 +112,17 @@ document.querySelector('.js-products-grid').innerHTML = productHTML;
 //STEP4: for the same product clicked again we dont want to create a new object in the cart list. We just want to increase the quantity of the object.
 //STEP 5: Two products can have the same name so we are using the product ID instead of the name.
 
+
+function updateCartQuantity() {
+        let cartQuantity = 0;
+
+        cart.forEach((cartItem) => {
+            cartQuantity += cartItem.quantity
+        })
+
+        document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+}
+
 document.querySelectorAll('.js-add-to-cart').forEach((button)=> {
     button.addEventListener('click', () => {
 
@@ -118,31 +131,9 @@ document.querySelectorAll('.js-add-to-cart').forEach((button)=> {
         //console.log(button.dataset) //!it return the object of all the datasets present on that selected html.
         // data-product-id="${product.id}"
         const productId = button.dataset.productId;
+        addToCart(productId);
+        updateCartQuantity()
         
-        let matchingId;
-        
-        cart.forEach((item) => {
-            if(productId === item.productId){
-                matchingId = item;
-                //console.log(matchingId);//! item is the object in the cart array and we are storing that object inside the productName.
-            }
-        })
-
-        if(matchingId){
-            matchingId.quantity += 1;
-        }else{
-            cart.push({
-                productId: productId,
-                quantity: 1,
-            })
-        }
-        let cartQuantity = 0;
-
-        cart.forEach((item) => {
-            cartQuantity += item.quantity
-        })
-
-        document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
     })
 })
 
@@ -156,3 +147,11 @@ document.querySelectorAll('.js-add-to-cart').forEach((button)=> {
 
 // import {cart as myCart} from '../data/cart'
 // import {products} from '../data/products' 
+
+//===========MAKE CODE READABLE===============
+
+// using function we can do that 
+// I have seprated the code which are updating the cart in the cart .js and the one which updating the amazon page in amazon js 
+
+//==================================================
+// Adding checkout page 
