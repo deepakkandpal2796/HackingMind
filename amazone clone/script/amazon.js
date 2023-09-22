@@ -1,3 +1,8 @@
+
+import {cart} from '../data/cart.js'
+import {products} from '../data/products.js' 
+// import {cart as myCart} from '../data/cart' //! we we want to use the different name.
+
 //steps to make the project 
 // step 1: save the data 
 // step 2: generate the html
@@ -111,7 +116,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button)=> {
         // console.log(button); //! <button class="add-to-cart-button button-primary js-add-to-cart"> Add to Cart </button>
         
         //console.log(button.dataset) //!it return the object of all the datasets present on that selected html.
-
+        // data-product-id="${product.id}"
         const productId = button.dataset.productId;
         
         let matchingId;
@@ -140,3 +145,14 @@ document.querySelectorAll('.js-add-to-cart').forEach((button)=> {
         document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
     })
 })
+
+//===========USING MODULE===============
+
+// We have the cart array in another file and if we use the cart array in any other file we will see there is a error that we cant use the variable again.
+//Also we have to maintaine the order of the script tags that are being used in the amazon.html file. if cart is declared at the last the page wont work.
+//To come out of these issue we are using here the module 
+
+//! Module is a type which helps use to export and import variables form other files, we have to declare this type in the script tag.
+
+// import {cart as myCart} from '../data/cart'
+// import {products} from '../data/products' 
