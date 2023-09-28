@@ -66,7 +66,7 @@ let [starter, ,main] = restaurant.starterMenu;
 console.log(restaurant.starterMenu) //[ 'Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad' ]  
 console.log(starter, main); // Focaccia Garlic Bread
 
-//swaping variables 
+//*swaping variables 
 [starter, main] = [main, starter];
 console.log(starter, main); // Garlic Bread Focaccia
 
@@ -216,7 +216,7 @@ console.log(...firstName); // D e e p a k
 //=================FUNCTIONS==============================
 
 //? Passing multiple arguments in the function using spread operator 
-//Prompt os defined in the broser engine not in the node 
+//Prompt is defined in the browser engine not in the node 
 const ingridents = [
   // prompt(`Let's make pasta! ingredient 1?`),
   // prompt(`ingredient 2?`),

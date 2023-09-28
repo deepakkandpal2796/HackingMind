@@ -4,6 +4,8 @@ import {cart, removeFromCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 import { formatCurrency } from '../utils/money.js';
 
+
+
 let cartSummary = "";
 cart.forEach((cartItem) => {
 
@@ -93,6 +95,10 @@ cart.forEach((cartItem) => {
   </div>`
 });
 
+let checkoutItem =  document.querySelector('.js-return-to-home-link');
+checkoutItem.innerHTML = cart.length;
+
+
 document.querySelector(".js-order-summary").innerHTML = cartSummary;
 
 //selecting delete button 
@@ -103,10 +109,12 @@ document.querySelectorAll('.js-delete-link').forEach((link) => {
         // To remove the element we can check with the id to delete the clicked element
         const productId = link.dataset.productId;
         removeFromCart(productId);
-        console.log(cart);
+        checkoutItem.innerHTML = cart.length;
         //After removing the element from the cart we need to reload the HTML
         const container = document.querySelector(`.js-cart-item-container-${productId}`) // return the dom element
         container.remove(); // this is use to remove the dom elemet form the page 
     })
 })
+
+
 
