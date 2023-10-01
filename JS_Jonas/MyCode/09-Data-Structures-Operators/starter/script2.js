@@ -432,3 +432,118 @@ console.log([...question.values()])
 //   'Correct 🎉',
 //   'Try again'
 // ]
+
+
+//? =============== Which Data Structure to Use? ===============
+
+//? Arrays VS Sets 
+// Array - When you need ordered list value.
+//       - When you need to manupulate the data.(using indexing)
+// Sets  - When you need unique values.
+//       - sets works faster than the arrays so when we need high performance
+//       - Use to remove duplicate.
+//? Objects VS Maps
+// Objects - Easier to access and understand .
+//         - When you need to include function.(methods)
+//         - Working with JSON
+// Maps    - better performance 
+//         - Keys can be any data type 
+//         - easy to itterate and compute size 
+//         - use when keys are not strings(arrays or boolean)
+//         - use when you need to map key to the value.
+
+//? =============== STRINGS ===============
+// Strings are like arrays but they are immutable as string are the primitive datatype. 
+// Basically any changes in the string will not reflect the change in the main string. (not in the case of objects(array is an object.))
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+console.log(plane[0]); //A
+console.log(plane[1]); //3
+console.log(plane[2]); //2
+console.log('B737'[0]); //B
+
+console.log(airline.length); //16
+console.log('B737'.length); //4
+
+console.log(airline.indexOf('r')); //6
+console.log(airline.lastIndexOf('r')); //10
+console.log(airline.indexOf('portugal')); //-1 (portugal not exist, Portugal exist)
+
+console.log(airline.slice(4)); // Air Portugal
+console.log(airline.slice(4, 7)); // Air
+
+console.log(airline.slice(0, airline.indexOf(' '))); // TAP
+console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // Portugal
+
+console.log(airline.slice(-2)); // al (this will calculte the elements from the end of the array)
+console.log(airline.slice(1, -1)); // AP Air Portuga
+
+//function to check the pessenger have middle seat or not. seatno 11C; seatno 12A
+const middleSeat = function (seat){
+  // B and E are the middle seat in the seat number. 
+  const seatLetter = seat.slice(-1);
+  if(seatLetter === 'B' || 'E')console.log(`${seat} is the middle seat`)
+  else console.log(`You got lucky`);
+}
+
+middleSeat('11B'); // 11B is the middle seat
+middleSeat('12C'); // 12C is the middle seat
+
+// Why the methods are applicable on the strings? string is a primitive datatype so how it works?
+// Methods are only applicable to the non primitive datatype.
+// But in case of strings the js convert the string in an object and then apply methods on to it 
+// this is known as the boxing
+// After applying the method js then convert the result into string and return  
+// How this done 
+
+// as the method all on the string 1st step is to convert into the obejct 
+const myName = new String("Deepak1");
+console.log(myName); // [String: 'Deepak']
+console.log(typeof myName); // object 
+// then it will apply the method on this
+const slicemyName = myName.slice(1,4);
+const lastLetter = myName.slice(-1)
+console.log(slicemyName); //eep
+console.log(lastLetter); // 1
+console.log(typeof slicemyName) // string
+console.log(typeof lastLetter) // string
+
+
+//? =============== STRINGS PART 2===============
+
+// const airline = 'TAP Air Portugal';
+console.log(airline.toLocaleLowerCase()); // tap air portugal
+console.log(airline.toLocaleUpperCase()); // TAP AIR PORTUGAL
+
+// Fix capitalistaion in name 
+const fullName = 'deepak kandpal'
+const sliceFirstName = fullName.slice(0, fullName.indexOf(' '));
+const sliceLastName = fullName.slice(fullName.indexOf(" ")+1)
+console.log(sliceFirstName + sliceLastName) // deepakkandpal
+
+const firstLetterCap = function(word){
+  return `${word[0].toLocaleUpperCase() + word.slice(1).toLocaleLowerCase()}`;
+}
+const firstName = firstLetterCap(sliceFirstName);
+const lastName = firstLetterCap(sliceLastName); 
+console.log(`${firstName} ${lastName}`); //Deepak Kandpal
+
+// comparing emails
+const email = 'deepak@gmail.com';
+const loginEmail = '  deepak@gmail.com  \n';
+
+// const lowerEmail = loginEmail.toLocaleLowerCase();
+// console.log(loginEmail) //   deepak@gmail.com  
+// const trimEmail = loginEmail.trim();
+// console.log(trimEmail); // deepak@gmail.com
+
+const normalisedEmail = loginEmail.toLocaleLowerCase().trim();
+console.log(normalisedEmail === email); //true 
+
+// replace 
+const priceDollars = '234$';
+const priceRuppes = parseInt(priceDollars.slice(0,-1)) * 82;
+
+console.log(priceRuppes)
+
