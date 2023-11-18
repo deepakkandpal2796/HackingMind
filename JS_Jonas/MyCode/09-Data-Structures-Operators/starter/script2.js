@@ -529,7 +529,7 @@ const firstName = firstLetterCap(sliceFirstName);
 const lastName = firstLetterCap(sliceLastName); 
 console.log(`${firstName} ${lastName}`); //Deepak Kandpal
 
-// comparing emails
+//! comparing emails
 const email = 'deepak@gmail.com';
 const loginEmail = '  deepak@gmail.com  \n';
 
@@ -541,9 +541,42 @@ const loginEmail = '  deepak@gmail.com  \n';
 const normalisedEmail = loginEmail.toLocaleLowerCase().trim();
 console.log(normalisedEmail === email); //true 
 
-// replace 
+//! Replace
 const priceDollars = '234$';
-const priceRuppes = parseInt(priceDollars.slice(0,-1)) * 82;
+// i want to replace $ with ₹
 
-console.log(priceRuppes)
+const priceRupee = priceDollars.replace('$', '₹');
+console.log(priceRupee); // 234₹
+
+const announcement = 'The gates are going to close. Please stand away from the gates';
+//I want door instead of gates.
+const announcementNew = announcement.replaceAll('gates', 'doors');
+console.log(announcementNew); // The doors are going to close. Please stand away from the doors
+
+
+//!Booleans
+
+const airPlane = 'Airbus A320neo';
+console.log(airPlane.includes('Air')); //true
+console.log(airPlane.includes('A320')); //true
+console.log(airPlane.startsWith('Airb')); //true
+
+if (airPlane.startsWith('Airbus') && airPlane.endsWith('neo')) {
+console.log('Part of the NEW ARirbus family'); // Part of the NEW ARirbus family
+}
+
+// Practice exercise
+const checkBaggage = function (items) {
+    const baggage = items.toLowerCase(); // convert to lower case so we can't stuck at camel casing.
+    if (baggage.includes ('knife') || baggage.includes( 'gun')) {
+        console.log('You are NOT allowed on board');
+    } else {
+        console.log('Welcome aboard!');
+    }
+};
+checkBaggage ('I have a laptop, some Food and a pocket Knife'); // You are NOT allowed on board
+checkBaggage ( 'Socks and camera'); // Welcome aboard!
+checkBaggage ('Got some snacks and a gun for protection'); // You are NOT allowed on board
+
+//? =============== STRINGS PART 3===============
 
