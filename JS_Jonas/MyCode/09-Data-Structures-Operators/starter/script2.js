@@ -82,6 +82,7 @@ const restaurant = {
   },
   orderPizza (mainIng, ...otherIng){
     console.log(mainIng, otherIng);
+    return true;
   }
 };
 
@@ -579,4 +580,30 @@ checkBaggage ( 'Socks and camera'); // Welcome aboard!
 checkBaggage ('Got some snacks and a gun for protection'); // You are NOT allowed on board
 
 //? =============== STRINGS PART 3===============
+
+//! Split and join 
+
+console.log('a+very+nice+string'.split('+')); //[ 'a', 'very', 'nice', 'string' ]
+console.log('Jonas Schmedtmann'.split(' '));//[ 'Jonas', 'Schmedtmann' ]
+
+const [FirstName, LastName] = "Jonas Schmedtmann".
+split(' ');
+const newName = ['Mr.', firstName, lastName.
+toUpperCase()].join(" ");
+console.log(newName); //Mr. Deepak KANDPAL
+
+// Padding
+const message = 'Go to gate 23! ';
+console.log(message.padStart(25, '+')); //++++++++++Go to gate 23!
+//the length of the string is 25.
+console.log(message.padEnd(25, '+')); // Go to gate 23! ++++++++++
+
+const masterCard = function(number){
+  let str = number + ''; //converting the number to the string so we can use the methods on this string 
+  let last =  str.slice(-4);
+  return last.padStart(str.length, '*');
+}
+console.log(masterCard(123456432)); //*****6432
+console.log(masterCard(1234543212345654)); //************5654
+console.log(masterCard('12345432123456543')); //*************6543
 
