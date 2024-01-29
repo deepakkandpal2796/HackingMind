@@ -140,7 +140,7 @@ const {fri} = restaurant.openingHours;
 console.log(fri); // { open: 11, close: 23 }
 
 const {fri : {open, close}} = openingHours;
-// console.log(fri, open, close);in this case fri is not a varible here only open and close are the variable 
+//! console.log(fri, open, close);in this case fri is not a varible here only open and close are the variable 
 console.log(open, close); // 11 23
 
 //=================FUNCTIONS==============================
