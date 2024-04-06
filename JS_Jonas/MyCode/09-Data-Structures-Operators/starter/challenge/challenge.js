@@ -31,25 +31,67 @@ Afterwards, test with your own test data!
 
 //selecting elements
 
-let textarea = document.getElementById('text');
-let button = document.getElementById('submit');
+// let textarea = document.getElementById('text');
+// let button = document.getElementById('submit');
 
-//add event listners
-button.addEventListener('onClick', printOutputs);
-let output;
-const printOutputs = function(textareaInput){
-    let input = textareaInput.value;
+// //add event listners
+// button.addEventListener('onClick', printOutputs);
+// let output;
+// const printOutputs = function(textareaInput){
+//     let input = textareaInput.value;
     
-    const inputArray = input.split('\n');
-    inputArray.forEach(item => {
-      const items = item.split('_');
-      let final = " ";
-      items.forEach(val => {
-        final = final + val;
-        output.push(final);
-      });
-    });
+//     const inputArray = input.split('\n');
+//     inputArray.forEach(item => {
+//       const items = item.split('_');
+//       let final = " ";
+//       items.forEach(val => {
+//         final = final + val;
+//         output.push(final);
+//       });
+//     });
 
-}
+// }
 
-console.log(output);
+// console.log(output);
+
+
+
+
+
+
+// const openingHours = {
+//   thu: {
+//     open: '12 pm',
+//     close: '22 pm',
+//   },
+//   fri: {
+//     open: '11 am',
+//     close: '23 pm',
+//   },
+//   sat: {
+//     open: 0, // Open 24 hours
+//     close: 24,
+//   }
+// }
+
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+//   openingHours,
+// };
+
+// const days = ['mon', 'tue', 'thu', 'fri', 'sat', 'sun'];
+// for (const day of days) {
+//   const open = restaurant.openingHours[day]?.open ?? 'closed';
+//   console.log(open != 'closed' ? `On ${day}, We open at ${open}` : `On ${day}, We are ${open}`);
+// }
+
+// On mon, We are closed
+// On tue, We are closed
+// On thu, We open at 12 pm
+// On fri, We open at 11 am
+// On sat, We open at 0
+// On sun, We are closed
