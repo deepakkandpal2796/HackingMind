@@ -563,10 +563,13 @@ console.log(future.getDay());
 console.log(future.getHours());
 console.log(future.getMinutes());
 console.log(future.getSeconds());
-console.log(future.toISOString());
+console.log(future.toISOString()); //to convert the date into the string you can store somewhere
 console.log(future.getTime());
 
 console.log(new Date(2142256980000));
+//* Manipulating dates
+//* now we have to store the trasfer date and then I have to sibract the get time from it if the day is more than 2 then i will display the date if the day is 1 then display tpday day is 1 then today.
+
 
 console.log(Date.now());
 
@@ -618,11 +621,14 @@ const pizzaTimer = setTimeout(
 );
 console.log('Waiting...');
 
-if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
+if (ingredients.includes('spinach')) clearTimeout(pizzaTimer); //this will clear the timeout.
 
 // setInterval
 setInterval(function () {
   const now = new Date();
   console.log(now);
 }, 1000);
+
+
+use to update time every sec we can use this 
 */

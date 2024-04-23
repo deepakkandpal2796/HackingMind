@@ -46,7 +46,7 @@ console.log('script 2')
 
 
 const openingHours = {
-  thu: {
+  thr: {
     open: 12,
     close: 22,
   },
@@ -105,7 +105,7 @@ const days = ['mon', 'tue', 'thr', 'fri', 'sat', 'sun'];
 for (const day of days) {
   //const open = restaurant.openingHours[day]?.open || 'closed'; //! this will not work for sat open as it has the value 0 which is a fasly value
   const open = restaurant.openingHours[day]?.open ?? 'closed';
-  console.log(`On ${day}, We open at ${open}`);
+  console.log(`On ${day},We are ${open}`);
 }
 // o/p: 
 // On mon, We open at undefined

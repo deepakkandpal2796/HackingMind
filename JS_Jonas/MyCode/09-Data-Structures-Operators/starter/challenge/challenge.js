@@ -56,42 +56,67 @@ Afterwards, test with your own test data!
 
 
 
+// While brushing up on my JavaScript knowledge, I stumbled upon a fascinating feature.
+// Lets suppose we have teams in an office.Some teams dosen't have HR reps(lucky ones), and we have some teams where HR reps are not needed.(value of HR is false in those teams).
+// We have to add "1" hr to those team which need HR and dosent have HR.
+
+// Let's suppose we have teams in an office.Some teams dosen't have HR reps(lucky ones), and we have some teams where HR reps are not needed.(value of HR is false in those teams).
+// We have to add "1" hr to those team which need HR and dosent have HR.
 
 
-
-// const openingHours = {
-//   thu: {
-//     open: '12 pm',
-//     close: '22 pm',
-//   },
-//   fri: {
-//     open: '11 am',
-//     close: '23 pm',
-//   },
-//   sat: {
-//     open: 0, // Open 24 hours
-//     close: 24,
-//   }
+// // Using nullish(??) operator 
+// const team1 = {
+//   dev : 8,
+//   testers : 4,
+//   ba : 3 
 // }
 
-// const restaurant = {
-//   name: 'Classico Italiano',
-//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
-//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-//   openingHours,
+// const team2 = {
+//   dev : 8,
+//   testers : 0,
+//   ba : 3,
+//   hr: false,
+// }
+// const teams = [team1, team2];
+
+// teams.forEach(function(team){
+//   team.hr = team.hr || 1;
+// });
+
+// console.log(team1);
+// console.log(team2);
+
+// // Output :
+// { dev: 8, testers: 4, ba: 3, hr: 1 }
+// { dev: 8, testers: 0, ba: 3, hr: false }
+
+// // It addes 1 to the team2 where the HR is not needed, the reason is the or operator which takes false as the falsy value and assign 1 to team2.hr.
+
+// // The simple solution is to use the Nullish Coalescing operator : It consider on the nusllish value not the falsy value.
+// // nullish values are null or undefined.
+
+// teams.forEach(function(team){
+//   team.hr = team.hr ?? 1;
+// });
+
+// console.log(team1);
+// console.log(team2);
+
+// { dev: 8, testers: 4, ba: 3, hr: 1 }
+// { dev: 8, testers: 0, ba: 3, hr: false }
+
+// const user1 = {
+//   name: "John",
+//   address: {
+//     city: "New York",
+//     street: "123 Main St",
+//     zipcode: "10001"
+//   }
+// };
+// const user2 = {
+//   name: "Pam",
+//   address: null,
 // };
 
-// const days = ['mon', 'tue', 'thu', 'fri', 'sat', 'sun'];
-// for (const day of days) {
-//   const open = restaurant.openingHours[day]?.open ?? 'closed';
-//   console.log(open != 'closed' ? `On ${day}, We open at ${open}` : `On ${day}, We are ${open}`);
-// }
-
-// On mon, We are closed
-// On tue, We are closed
-// On thu, We open at 12 pm
-// On fri, We open at 11 am
-// On sat, We open at 0
-// On sun, We are closed
+// console.log(user1.address.zipcode)
+// console.log(user2.address?.zipcode ?? "No address found")
