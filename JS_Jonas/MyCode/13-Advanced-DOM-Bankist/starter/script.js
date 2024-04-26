@@ -36,6 +36,10 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+
+// Lecture 
+
+/*
 //Creating and inserting element 
 
 //--------create element and add class------------
@@ -74,3 +78,38 @@ console.log(message.style.color)//Error : as the color property is not inline de
 console.log(getComputedStyle(message).height); 
 
 message.style.height = parseFloat(getComputedStyle(message).height)+30+ "px";
+
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+//------------Get/Set Attribute---------------------
+const logo = document.querySelector('.nav__logo');
+
+// get 
+console.log(logo.alt);
+console.log(logo.src);
+
+// set
+logo.alt = 'Deepak'
+
+//* manual attribute 
+console.log(logo.designer); //this only get html defined attribute manual defined.
+console.log(logo.getAttribute('designer')); 
+
+logo.setAttribute('name', 'deepak') //create an attribute
+
+//------------Data attribute//------------
+//* We use syntax dataset.cameCase and in html we use data-attribute-name
+console.log(logo.dataset.versionNumber);  //3.0
+
+//------------Classes------------
+
+logo.classList.add('cl');
+console.log(logo.classList.contains('nav__logo'));
+console.log(logo.classList.contains('classss'));
+logo.classList.toggle('c')
+logo.classList.remove('cl');
+
+*/
+
+//---------------Website starts------------------
+
