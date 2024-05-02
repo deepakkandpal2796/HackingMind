@@ -9,6 +9,11 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const header = document.querySelector('header');
+const section1 = document.querySelector('#section--1');
+const btnScroll = document.querySelector('.btn--scroll-to');
+const navLinks = document.querySelector('.nav__links');
+const navLink = document.querySelectorAll('.nav__link');
+
 //Functions
 const openModal = function (e) {
   e.preventDefault(); //! on click of the hyperlink the page refresh
@@ -101,7 +106,7 @@ logo.setAttribute('name', 'deepak') //create an attribute
 //* We use syntax dataset.cameCase and in html we use data-attribute-name
 console.log(logo.dataset.versionNumber);  //3.0
 
-//------------Classes------------
+//------------add/remove Classes------------
 
 logo.classList.add('cl');
 console.log(logo.classList.contains('nav__logo'));
@@ -109,7 +114,130 @@ console.log(logo.classList.contains('classss'));
 logo.classList.toggle('c')
 logo.classList.remove('cl');
 
+
+//------------ Event Listner------------
+
+const h1 = document.querySelector("h1");
+
+const alertH1 = function(){
+  alert(`Hi! You can't see  me after clicking ok!`);
+
+  h1.removeEventListener('mouseenter', alertH1);
+}
+
+h1.addEventListener('mouseenter', alertH1);
+
+
+
+////------------Event Propagation Example//------------
+//! if we click on the navLinks we can see all the parent event got trigger with the same event target this is because of bubling
+header.addEventListener('click', function(e){
+  e.preventDefault();
+  console.log('Header', e.target);
+});
+
+navLink.addEventListener('click', function(e){
+  e.preventDefault();
+  console.log('Nav',e.target);
+});
+
+navLinks.forEach(function(el){
+  el.addEventListener('click', function(e){
+    e.preventDefault();
+    console.log('Link',e.target);
+  });
+})
+
+// output on clicking the link is 
+// navlink event works 
+// nav event works
+// then header event work
+//!if you we have declare any event listner on the parent element then it will trigger on the click of the child element 
+
 */
 
 //---------------Website starts------------------
 
+//-----scrolling behaviour---------
+btnScroll.addEventListener('click', function(e){
+
+  /*
+  const s1coords =  section1.getBoundingClientRect();
+   //* this gives us coordinate from the top the screen.
+   //* not the header just the top screen
+  console.log(s1coords);
+  console.log(e.target.getBoundingClientRect());
+  
+
+  console.log('current page position: ', window.pageXOffset, window.pageYOffset);
+  //* this gives teh postion form the top of the page above the header
+
+
+  //* window.scrollTo function move the screen from the top of the page (above header).
+  //* thats why we added the height from the top + heigth from the screen.
+
+  //! since pageoffset is not supported we use smooth scrooling in css for this not js.
+
+  //! to check the height of the Viewport
+  console.log(`Viewport Height ${document.documentElement.clientHeight}`);
+  console.log(`Viewport Width ${document.documentElement.clientWidth}`);
+
+
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth'
+  // });
+*/
+section1.scrollIntoView({behavior:'smooth'});
+
+});
+
+
+/*
+//! if we click on the navLinks we can see all the parent event got trigger with the same event target this is because of bubling
+// here we have to select all of the elements of navlink but we dont have to do that we have to just select the parent element and get the target 
+// as we know how bubbling works when we click on the link the event on the parent element will run also
+
+header.addEventListener('click', function(e){
+  e.preventDefault();
+  console.log('Header', e.target);
+});
+
+navLinks.addEventListener('click', function(e){
+  e.preventDefault();
+  console.log('Nav',e.target);
+});
+
+navLink.forEach(function(el){
+  el.addEventListener('click', function(e){
+    e.preventDefault();
+    console.log('Link',e.target);
+  });
+})
+
+// output on clicking the link is 
+// navlink event works 
+// nav event works
+// then header event work
+//!if you we have declare any event listner on the parent element then it will trigger on the click of the child element 
+
+*/
+
+navLinks.addEventListener('click', function(e){
+  e.preventDefault();
+  const targetLink = e.target.classList.contains('nav__link');
+  if(targetLink) {
+    const targetSection = e.target.getAttribute('href');
+    document.querySelector(targetSection).scrollIntoView({behavior: "smooth"});
+  }
+});
+
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabContent =  document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener("click", (e) => {
+  const clicked = e.target.closest('operations__tab');
+
+});
