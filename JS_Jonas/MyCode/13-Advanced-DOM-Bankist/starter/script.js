@@ -238,6 +238,21 @@ const tabs = document.querySelectorAll('.operations__tab');
 const tabContent =  document.querySelectorAll('.operations__content');
 
 tabsContainer.addEventListener("click", (e) => {
-  const clicked = e.target.closest('operations__tab');
+  //tab display
+  const clicked = e.target.closest('.operations__tab');
+  if(!clicked) return;
+  tabs.forEach(el => el.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
 
+  //content Display
+  tabsContent.forEach(el => el.classList.remove('operations__content--active'));
+
+  document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
+
+  //* line in one code not like this
+  // const selectedContent = clicked.dataset.tab;
+  // const tabSelected = document.querySelector(`.operations__content--${selectedContent}`);
+  // tabSelected.classList.add('operations__content--active');
+  
+  
 });
