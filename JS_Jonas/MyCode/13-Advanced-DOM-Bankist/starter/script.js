@@ -13,6 +13,11 @@ const section1 = document.querySelector('#section--1');
 const btnScroll = document.querySelector('.btn--scroll-to');
 const navLinks = document.querySelector('.nav__links');
 const navLink = document.querySelectorAll('.nav__link');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabContent =  document.querySelectorAll('.operations__content');
+const nav = document.querySelector('.nav');
+const logo = document.querySelector('.nav__logo');
 
 //Functions
 const openModal = function (e) {
@@ -233,9 +238,7 @@ navLinks.addEventListener('click', function(e){
   }
 });
 
-const tabsContainer = document.querySelector('.operations__tab-container');
-const tabs = document.querySelectorAll('.operations__tab');
-const tabContent =  document.querySelectorAll('.operations__content');
+
 
 tabsContainer.addEventListener("click", (e) => {
   //tab display
@@ -249,10 +252,45 @@ tabsContainer.addEventListener("click", (e) => {
 
   document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
 
-  //* line in one code not like this
+  //* Dont code like this, code in one line.
   // const selectedContent = clicked.dataset.tab;
   // const tabSelected = document.querySelector(`.operations__content--${selectedContent}`);
   // tabSelected.classList.add('operations__content--active');
   
   
 });
+
+//Hover event in nav bar
+const handelHover = function (e){
+  if(e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = e.target.closest('nav');
+    console.log(siblings);
+    const navLinks = siblings.querySelectorAll('.nav__link');
+    
+    navLinks.forEach((el) => {
+      if(el !== link) el.style.opacity = this;
+    })
+    logo.style.opacity = this;
+  }
+
+}
+
+
+//*how can we call the function in the event listners
+
+// nav.addEventListener('mouseover', function(e) {
+//   handelHover(e, 0.5);
+// })
+
+// nav.addEventListener('mouseout', function(e){
+//   handelHover(e, 1);
+// });
+
+nav.addEventListener('mouseover', handelHover.bind(0.5));
+
+nav.addEventListener('mouseout',  handelHover.bind(1));
+
+
+//*The bind() method creates a new function where this keyword refers to the parameter in the parenthesis. This way the bind() method enables calling a function with a specified this value. 
+//*It dose not call the funtion it just make return the funciton so we can use this in the event handlers and when the function is call we can get the event.
