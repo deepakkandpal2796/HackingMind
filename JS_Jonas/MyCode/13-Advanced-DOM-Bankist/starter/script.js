@@ -294,3 +294,68 @@ nav.addEventListener('mouseout',  handelHover.bind(1));
 
 //*The bind() method creates a new function where this keyword refers to the parameter in the parenthesis. This way the bind() method enables calling a function with a specified this value. 
 //*It dose not call the funtion it just make return the funciton so we can use this in the event handlers and when the function is call we can get the event.
+
+
+//*Sticky nav bar
+
+
+//from here we can ger the postion of the section from the top!
+// then we to trigger the scroll event the scroll event trigger whenever we hit the scroll pad
+
+window.addEventListener('scroll', function(){
+  const initialPosition = section1.getBoundingClientRect();
+  // console.log(initialPosition);
+  console.log(this.window.scrollY);
+  //this will give the page postion form the top of the screen.
+  console.log(`section 1 ${initialPosition.top}`);
+  //this will give the position of the section 1 from the top of the page.
+  if(window.scrollY > initialPosition.top){
+    nav.classList.add('sticky');
+  }else{
+    nav.classList.remove('sticky');
+  }
+})
+
+
+//!why the scroll event is bad ?
+//* it fires evertime which can make the code slow as the scroll event runs everytime we touch the mouse pad
+//! Solution 
+
+
+//Intersection observer api
+
+//This will observe wether the target element is  intersecting the root or not....as soon as the target element intersects the root this function will be called up...
+
+//We will make a target element, root and an observer function. when the target element will intesect the root then the observer function will called up.
+
+//section 1 is the target element we have to pass the taget element in the observer event.
+
+//What is the root ? root is the other element which we want the moniter wether the target element has crossed it or not. if the root is null then this will take the viewport as the root.
+
+//Also we have threshold where we can define on how much percentage intersection of target and the root the function will be called.
+
+//the threshold can be the array.
+
+//Then we have the observer function. where we can define what functionalites should be there when intersection happen.
+
+//in the callback function we have to pass the enteries of the threshhold and the observer event itself.
+
+//The IntersectionObserver will observe the target and the root
+
+
+const obsCallback = function(entries, observer ){
+  entries.forEach(entry => )
+}
+
+
+const obsOption = {
+  root: null,
+  threshold: 0.1,
+}
+
+
+//observer 
+const observer = new IntersectionObserver();
+
+//we have to observe section 1
+observer.observe(section1);
