@@ -159,6 +159,10 @@ navLinks.forEach(function(el){
 // then header event work
 //!if you we have declare any event listner on the parent element then it will trigger on the click of the child element 
 
+
+////------------Intersection observer api------------
+
+
 */
 
 //---------------Website starts------------------
@@ -299,22 +303,22 @@ nav.addEventListener('mouseout',  handelHover.bind(1));
 //*Sticky nav bar
 
 
-//from here we can ger the postion of the section from the top!
+// from here we can ger the postion of the section from the top!
 // then we to trigger the scroll event the scroll event trigger whenever we hit the scroll pad
 
-window.addEventListener('scroll', function(){
-  const initialPosition = section1.getBoundingClientRect();
-  // console.log(initialPosition);
-  console.log(this.window.scrollY);
-  //this will give the page postion form the top of the screen.
-  console.log(`section 1 ${initialPosition.top}`);
-  //this will give the position of the section 1 from the top of the page.
-  if(window.scrollY > initialPosition.top){
-    nav.classList.add('sticky');
-  }else{
-    nav.classList.remove('sticky');
-  }
-})
+// window.addEventListener('scroll', function(){
+//   const initialPosition = section1.getBoundingClientRect();
+//   // console.log(initialPosition);
+//   console.log(this.window.scrollY);
+//   //this will give the page postion form the top of the screen.
+//   console.log(`section 1 ${initialPosition.top}`);
+//   //this will give the position of the section 1 from the top of the page.
+//   if(window.scrollY > initialPosition.top){
+//     nav.classList.add('sticky');
+//   }else{
+//     nav.classList.remove('sticky');
+//   }
+// })
 
 
 //!why the scroll event is bad ?
@@ -322,29 +326,27 @@ window.addEventListener('scroll', function(){
 //! Solution 
 
 
-//Intersection observer api
+//!This will observe wether the target element is  intersecting the root or not....as soon as the target element intersects the root this function will be called up...
 
-//This will observe wether the target element is  intersecting the root or not....as soon as the target element intersects the root this function will be called up...
+//!We will make a target element, root and an observer function. when the target element will intesect the root then the observer function will called up.
 
-//We will make a target element, root and an observer function. when the target element will intesect the root then the observer function will called up.
+//!section 1 is the target element we have to pass the taget element in the observer event.
 
-//section 1 is the target element we have to pass the taget element in the observer event.
+//!What is the root ? root is the other element which we want the moniter wether the target element has crossed it or not. if the root is null then this will take the viewport as the root.
 
-//What is the root ? root is the other element which we want the moniter wether the target element has crossed it or not. if the root is null then this will take the viewport as the root.
+//!Also we have threshold where we can define on how much percentage intersection of target and the root the function will be called.
 
-//Also we have threshold where we can define on how much percentage intersection of target and the root the function will be called.
+//!the threshold can be the array.
 
-//the threshold can be the array.
+//!Then we have the observer function. where we can define what functionalites should be there when intersection happen.
 
-//Then we have the observer function. where we can define what functionalites should be there when intersection happen.
+//!in the callback function we have to pass the enteries of the threshhold and the observer event itself.
 
-//in the callback function we have to pass the enteries of the threshhold and the observer event itself.
+//!The IntersectionObserver will observe the target and the root
 
-//The IntersectionObserver will observe the target and the root
-
-
+/*
 const obsCallback = function(entries, observer ){
-  entries.forEach(entry => )
+  entries.forEach(entry => console.log(entry));
 }
 
 
@@ -355,7 +357,48 @@ const obsOption = {
 
 
 //observer 
-const observer = new IntersectionObserver();
-
+const observer = new IntersectionObserver(obsCallback, obsOption);
 //we have to observe section 1
 observer.observe(section1);
+
+*/
+
+// isIntersecting: false
+//We can see is intersecting in the object entry which is true when intersection is happning and false when the object is not intersecting...
+
+
+// *threshold is the presentage we want to visble on the root, when it is intersecting and matches the threshold percentage it says intersecting true.
+// *but when it is not intersecting and matches the threshold percentage then it says false 
+//* the observer will call function two time 1st when it is going to intersect then when it stops intersecting but when 10% is visible in the viewport as threshold is 10% and root is null
+
+
+const obsCallback = function(entries, observer ){
+  entries.forEach(entry => console.log(entry));
+}
+
+
+const obsOption = {
+  root: null,
+  threshold: [0, 0.2],
+}
+// 0 means that the section is just get into view port and when it completely gets out of the viewport
+
+//observer 
+const observer = new IntersectionObserver(obsCallback, obsOption);
+//we have to observe section 1
+observer.observe(section1);
+
+
+
+// const obsCallback = function(enteries, observer){
+//  enteries.forEach(entry => {
+//   if(en)
+//  })
+// }
+
+// const obsOptions = {
+//   root: null,
+//   threshold: -0.1,
+// }
+
+// const observer = new IntersectionObserver();
