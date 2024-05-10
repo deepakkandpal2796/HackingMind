@@ -469,7 +469,7 @@ const imgCallBck = function(entries, observer){
 const imgOptns = {
   root: null,
   threshold: 0,
-  
+
 }
 
 const imgObserver = new IntersectionObserver(imgCallBck, imgOptns);
@@ -479,4 +479,6 @@ const imgObserver = new IntersectionObserver(imgCallBck, imgOptns);
 const imgs = document.querySelectorAll('img[data-src]');
 imgs.forEach(img => imgObserver.observe(img));
 
+
+//*---------Tesimonial slider---------
 
