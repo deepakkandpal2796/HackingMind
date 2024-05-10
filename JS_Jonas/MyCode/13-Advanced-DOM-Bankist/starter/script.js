@@ -167,7 +167,9 @@ navLinks.forEach(function(el){
 
 //---------------Website starts------------------
 
-//-----scrolling behaviour---------
+//*-----scrolling behaviour---------
+
+//*------btn scroll----------------
 btnScroll.addEventListener('click', function(e){
 
   /*
@@ -232,7 +234,7 @@ navLink.forEach(function(el){
 //!if you we have declare any event listner on the parent element then it will trigger on the click of the child element 
 
 */
-
+//*------nav link scroll------
 navLinks.addEventListener('click', function(e){
   e.preventDefault();
   const targetLink = e.target.classList.contains('nav__link');
@@ -242,7 +244,7 @@ navLinks.addEventListener('click', function(e){
   }
 });
 
-
+//*---------tabs navigation---------
 
 tabsContainer.addEventListener("click", (e) => {
   //tab display
@@ -252,7 +254,7 @@ tabsContainer.addEventListener("click", (e) => {
   clicked.classList.add('operations__tab--active');
 
   //content Display
-  tabsContent.forEach(el => el.classList.remove('operations__content--active'));
+  tabContent.forEach(el => el.classList.remove('operations__content--active'));
 
   document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
 
@@ -264,7 +266,7 @@ tabsContainer.addEventListener("click", (e) => {
   
 });
 
-//Hover event in nav bar
+//*---------Hover event nav links---------
 const handelHover = function (e){
   if(e.target.classList.contains('nav__link')) {
     const link = e.target;
@@ -300,7 +302,7 @@ nav.addEventListener('mouseout',  handelHover.bind(1));
 //*It dose not call the funtion it just make return the funciton so we can use this in the event handlers and when the function is call we can get the event.
 
 
-//*Sticky nav bar
+//*---------Sticky nav bar---------
 
 
 // from here we can ger the postion of the section from the top!
@@ -371,7 +373,7 @@ observer.observe(section1);
 // *but when it is not intersecting and matches the threshold percentage then it says false 
 //* the observer will call function two time 1st when it is going to intersect then when it stops intersecting but when 10% is visible in the viewport as threshold is 10% and root is null
 
-
+/*
 const obsCallback = function(entries, observer ){
   entries.forEach(entry => console.log(entry));
 }
@@ -387,18 +389,94 @@ const obsOption = {
 const observer = new IntersectionObserver(obsCallback, obsOption);
 //we have to observe section 1
 observer.observe(section1);
+*/
 
 
 
-// const obsCallback = function(enteries, observer){
-//  enteries.forEach(entry => {
-//   if(en)
-//  })
-// }
 
-// const obsOptions = {
-//   root: null,
-//   threshold: -0.1,
-// }
 
-// const observer = new IntersectionObserver();
+const obsFun = function(entries, observerr){
+  entries.forEach(entry => {
+    // console.log(entry);
+    
+     if(!entry.isIntersecting){
+        nav.classList.add('sticky');
+    }else{
+        nav.classList.remove('sticky');
+    }
+  });
+}
+
+const navHeight = nav.getBoundingClientRect().height;
+
+const obsOption  = {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`, //give a negative margin to the intersection,
+}
+
+
+const observer = new IntersectionObserver(obsFun, obsOption)
+observer.observe(header); 
+
+//*---------Sliding section---------
+
+const secObsCallbk = function(entries, observer){
+  //we can use destructuring to the the threshold
+  const [entry] = entries;
+   
+  if(!entry.isIntersecting) return;
+
+  entry.target.classList.remove('section--hidden');
+  //once the functionaly is done we dont want the intersection api to observe the sections.
+  secObserver.unobserve(entry.target);
+}
+
+const secObsOption = {
+  root: null,
+  threshold: 0.15,
+}
+
+
+
+const secObserver = new IntersectionObserver(secObsCallbk, secObsOption);
+
+const sections = document.querySelectorAll('.section');
+sections.forEach(sec => {
+  sec.classList.add('section--hidden')
+  secObserver.observe(sec);
+});
+
+//*---------Img reveal on section---------
+
+const imgCallBck = function(entries, observer){
+  const [entry] = entries;
+  
+  if(!entry.isIntersecting) return;
+
+  //*replacing the low pixel img with the high defination image and then removing the blur.
+  //*we want when the new image is loaded then only the blur is removed and for that we will take the load event.
+
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener('load', function(){
+    entry.target.classList.remove('lazy-img');
+  })
+  imgObserver.unobserve(entry.target);
+}
+
+
+const imgOptns = {
+  root: null,
+  threshold: 0,
+  
+}
+
+const imgObserver = new IntersectionObserver(imgCallBck, imgOptns);
+
+//secting images having the data src attribute hgaving the bad pixel img and the best pixel img in in the src.
+
+const imgs = document.querySelectorAll('img[data-src]');
+imgs.forEach(img => imgObserver.observe(img));
+
+
