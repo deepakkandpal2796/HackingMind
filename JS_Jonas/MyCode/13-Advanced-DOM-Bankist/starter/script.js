@@ -488,10 +488,8 @@ const sliderBtnLeft = document.querySelector('.slider__btn--left');
 const sliderBtnRight = document.querySelector('.slider__btn--right');
 
 
-slideWrapper.style.transform = 'scale(0.3) translateX(-800px)'; 
-slideWrapper.style.overflow = 'visible';
-
-
+// slideWrapper.style.transform = 'scale(0.3) translateX(-800px)'; 
+// slideWrapper.style.overflow = 'visible';
 
 
 let currentSlide = 0;
@@ -504,24 +502,71 @@ const goToSlide = function(currentSlide){
 }
 
 //making all slide side by side 
-//default
+//default 
 goToSlide(0);
 
-sliderBtnRight.addEventListener('click', function(){
+
+
+const nextSlide = function(){
   if(currentSlide == maxSlide - 1){
     currentSlide = 0;
   }else{
     currentSlide++;
   }
   goToSlide(currentSlide);
-})
+  activeDots(currentSlide);
+}
 
-
-sliderBtnLeft.addEventListener('click', function(){
+const prevSlide = function(){
   if(currentSlide == 0){
     currentSlide = maxSlide - 1
   }else{
     currentSlide--;
   }
   goToSlide(currentSlide);
+  activeDots(currentSlide);
+}
+
+sliderBtnRight.addEventListener('click', nextSlide);
+sliderBtnLeft.addEventListener('click', prevSlide)
+
+//On press of key event
+document.addEventListener('keydown', function(e){
+  if(e.key == 'ArrowRight'){
+     nextSlide();
+     activeDots(currentSlide);
+    }else if(e.key == 'ArrowLeft'){
+     prevSlide(); 
+     activeDots(currentSlide);
+  }
+});
+
+//dots 
+const dotsContainer = document.querySelector('.dots');
+
+//dots should be equal to the no of slides
+slides.forEach((_, i) => {
+  dotsContainer.insertAdjacentHTML('beforeend', `<button class="dots__dot" data-slide="${i}"></button>`);
 })
+
+
+
+//select dots
+dotsContainer.addEventListener('click', function(e){
+  if(!e.target.classList.contains('dots__dot')) return;
+  const dotNo = e.target.dataset.slide;
+  goToSlide(dotNo);
+  activeDots(dotNo);
+})
+
+
+const dots = document.querySelectorAll('.dots__dot');
+const activeDots = function(slide){
+  document.querySelectorAll('.dots__dot').forEach(dot => {
+    dot.classList.remove('dots__dot--active');
+  });
+
+  document.querySelector(`.dots__dot[data-slide ="${slide}"]`).classList.add('dots__dot--active');
+
+}
+activeDots(0);
