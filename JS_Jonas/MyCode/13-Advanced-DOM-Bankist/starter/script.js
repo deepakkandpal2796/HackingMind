@@ -443,7 +443,7 @@ const secObserver = new IntersectionObserver(secObsCallbk, secObsOption);
 
 const sections = document.querySelectorAll('.section');
 sections.forEach(sec => {
-  sec.classList.add('section--hidden')
+  //! sec.classList.add('section--hidden')
   secObserver.observe(sec);
 });
 
@@ -482,3 +482,46 @@ imgs.forEach(img => imgObserver.observe(img));
 
 //*---------Tesimonial slider---------
 
+const slides = document.querySelectorAll('.slide');
+const slideWrapper = document.querySelector('.slider');
+const sliderBtnLeft = document.querySelector('.slider__btn--left');
+const sliderBtnRight = document.querySelector('.slider__btn--right');
+
+
+slideWrapper.style.transform = 'scale(0.3) translateX(-800px)'; 
+slideWrapper.style.overflow = 'visible';
+
+
+
+
+let currentSlide = 0;
+const maxSlide = slides.length;
+
+const goToSlide = function(currentSlide){
+  slides.forEach((slide, i) => {
+    slide.style.transform = `translateX(${100 * (i - currentSlide) }%)`;
+  });
+}
+
+//making all slide side by side 
+//default
+goToSlide(0);
+
+sliderBtnRight.addEventListener('click', function(){
+  if(currentSlide == maxSlide - 1){
+    currentSlide = 0;
+  }else{
+    currentSlide++;
+  }
+  goToSlide(currentSlide);
+})
+
+
+sliderBtnLeft.addEventListener('click', function(){
+  if(currentSlide == 0){
+    currentSlide = maxSlide - 1
+  }else{
+    currentSlide--;
+  }
+  goToSlide(currentSlide);
+})
