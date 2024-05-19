@@ -138,3 +138,180 @@ a.newName //o/p  -> 'Deepak'
 
 
 //*===========ES6 Classes==============
+
+// All the concept here are same as constructor function it is just we have differenet syntax for classes in ES6 
+// There is no such things like classes in the js like traditional languges c++ or java 
+// There are just syntactical sugar of classes in js, actually classes are the function itself or a special type of function.
+//We organise code with the help of classes so we have to do the same in js for that js have come up with this idea
+
+
+//class expression
+// const AllPerson = class{}
+
+//class declaration
+class AllPerson {
+
+    //constructor function
+    constructor(firstName, dob){
+        this.firstName = firstName;
+        this.dob = dob;
+    }
+
+    //prototype
+    calcAge(){
+        console.log(2024 - this.dob);
+    }
+}
+
+
+const deepu = new AllPerson('Deepu', 2000);
+console.log(deepu);
+// output
+// AllPerson {firstName: 'Deepu', dob: 2000}
+// dob: 2000
+// firstName: "Deepu"
+// [[Prototype]] : Object
+// calcAge: ƒ calcAge()
+// constructor: class AllPerson
+deepu.calcAge(); //24
+
+//Things to Remember about the new Keyword are same 
+//1. When we make a new instance with a new empty object is created.
+//2. Then the constructor function is called and the 'this' keyword in the function will point to the new object created. (you might think that js give you an object name of the constructor function but it js helping you by giving constructor function's name for the object.)
+//3. Then the newly created object will linked to the prototype.
+//4. Then the function return the object.
+
+console.log(deepu.__proto__ == AllPerson.prototype); //true
+
+//*---------Can add prototype outside of the class---------
+
+AllPerson.prototype.printname = function(){
+    console.log(this.firstName);
+}
+
+deepu.printname(); //o/p: Deepu
+
+//*---------Imp point on classes---------
+// 1. Classes are not hoisted meaning, we can't call them before declaration
+//2. Classes are first class citizens meaning, we can pass them into a function and return them from a function. 
+//3. classes are excuted in strict mode even if you dont write it on the top.
+
+//*---------Getters and Setters---------
+
+//* ----getters and setters in objects-----
+
+const accounts = {
+    owner: 'Deepu',
+    movements: [100, 200, 300, 400],
+
+    get latest(){
+        return this.movements.slice(-1).pop();
+    },
+
+    set latest(value){
+        this.movements.push(value);
+    }
+
+}
+
+//*Basics of getters and setters
+// In object we dont need to set both getter and setter for the same object which means we can only set getters and setter alone.
+// You can only pass one parameter in the setter class
+//? Here set and get are the methods but we still dont call them we make them act like the property.
+//? Remember setters and getters are used to set and get the properties, we have to create the property first. either using the constructor function or manually just like the account object.
+
+
+console.log(accounts.latest); //400
+// not like accounts.latest()
+accounts.latest = 50; 
+console.log(accounts.movements); //[100, 200, 300, 400, 50]
+
+//* ----getters and setters in classes-----
+
+//*Basics of getters and setters is same 
+
+//* wrong way of calling a setter this give error
+/*
+class Practice {
+    constructor(firstName){
+        this.firstName = firstName //we have to define a property 
+    }
+
+    set firstName(name){ //constructor name should be the name of the property
+        this.firstName = name;
+    }
+    get firstName(){
+        console.log(this.firstName);
+    }
+}
+
+*/
+
+// How do we call setter pra.firstName = value right ?
+// Here if we can see the constructor is calling the setter this.firstName = firstName
+// then the setter is being called and the firstNamen is passes as attribute to the setter 
+// now we can see that the setter this.firstName = name is again calling the setter
+// So we are in a infinite loop of calling a setter
+
+//? To tackel with this problem we use '_', lets see how 
+class Practice {
+    constructor(firstName){
+        this.firstName = firstName   // We use an underscore to indicate that this property should be accessed through a getter and a setter.
+        //or we can say that to create a new property so that it cant call the same setter again and again now we can see the setter name and the property name are different so the constructor function only calls the function once and then _firstName setter doesnot exist so it will not called again.
+    }
+
+    set firstName(name){ 
+        this._firstName = name;
+    }
+    
+    get firstName(){
+        return this._firstName;
+    }
+}
+
+
+const pra = new Practice('deepak');
+console.log(pra);
+
+// Practice {_firstName: 'deepak'}
+// _firstName: "deepak"
+// firstName: (...)
+// [[Prototype]]: Object
+// pra.fullName -> undefined
+
+
+
+
+// It mostly used to set data validation 
+// If we are setting a property with the setter then we also have to provide its getter?
+// Yes, that's correct. In JavaScript, when you define a setter for a property, you should also define a getter to make it a "virtual" property that's readable and writable.
+
+
+// class Person {
+//     constructor(name, age) {
+//       this.name = name;
+//       this._age = age; // We use an underscore to indicate that this property should be accessed through a getter and a setter.
+//     }
+  
+//     // This is the getter for the age property.
+//     get age() {
+//       return this._age;
+//     }
+  
+//     // This is the setter for the age property.
+//     set age(value) {
+//       if (value < 0) {
+//         throw new Error('Age cannot be negative');
+//       }
+//       this._age = value;
+//     }
+//   }
+  
+//   const person = new Person('John', 30);
+//   console.log(person.age); // 30
+//   person.age = -1; // This will throw an error.
+
+// if we dont provide getter and only setter for a property does that property willl exist in the object?
+
+
+
