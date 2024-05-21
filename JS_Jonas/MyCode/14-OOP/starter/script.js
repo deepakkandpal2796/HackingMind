@@ -391,3 +391,129 @@ console.log(employee);
 // [[Prototype]]: Object
 // calcAge: ƒ calcAge()
 // [[Prototype]]: Object
+
+
+//*---------Inheritance using constructor function---------
+
+const PersonParent =  function(firstName, birthYear){
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+}
+
+PersonParent.prototype.calcAge = function(){
+    console.log(2024 - this.birthYear);
+}
+
+const Student = function(firstName, birthYear, course){
+    //? I want to inherit this property 
+    //? For that use function.call so that I can set the this keyword to the instance.
+    //? If you dont set the this keyword then the this.firstName in the PersonParent function will point to the PersonParent function.
+    //This is how constructor function is inherited
+    // this.firstName = firstName;
+    // this.birthYear = birthYear;
+    PersonParent.call(this, firstName, birthYear);
+    this.course = course;
+}
+
+//* Linking the Student protoype with the persoinParent prototype.
+
+//? student.Prototype object inherits the properties of the PersonParent.prototype
+//? student.Prototype = PersonParent.prototype
+//? If you assign the prototype then it will overwrite the existing prototype of the Student class.
+
+Student.prototype = Object.create(PersonParent.prototype)
+
+Student.prototype.intoduce = function(){
+    console.log(`My name is ${this.firstName} and i study ${this.course}`);
+}
+
+const ashu = new Student('ashu', 2000, 'Science');
+
+
+
+console.log(ashu);
+ashu.intoduce(); //My name is ashu and i study Science
+ashu.calcAge() //24
+
+
+//? Prototype Chaining 
+console.log(ashu.__proto__); //PersonParent {intoduce: ƒ}
+console.log(ashu.__proto__.__proto__); // {calcAge: ƒ}
+console.log(ashu.__proto__.__proto__.__proto__); // Object class
+
+//* If I check the constructor of the Student class it shows the constructor is person as we have set the prototype property using object.create()
+
+console.dir(Student.prototype.constructor); //PersonParent(firstName, birthYear)
+
+Student.prototype.constructor = Student;
+
+console.dir(Student.prototype.constructor); //Student(firstName, birthYear, course)
+
+
+//*---------Inheritance using ES6---------
+
+class PersonEl {
+    constructor(firstName, dob){
+        this.firstName = firstName;
+        this.dob = dob;
+    }
+
+    set firstName(name){
+        this._firstName = name;
+    }
+
+    get firstName(){
+        return this._firstName;
+    }
+
+    static into(){
+        console.log(`Hi I am the person class`)
+    }
+
+    calcAge(){
+        console.log(2024 - this.dob);
+    }
+}
+
+//To use inheritance in the ES6 we 
+
+class StudentEl extends PersonEl{
+    //to use the constructor we have to use the super keyword
+    //we have to use this at the top 
+    constructor(firstName, dob, course){
+        super(firstName, dob);
+        this.course = course;
+    }
+
+    intoduce(){
+        console.log(`Hi my name is ${this.firstName} and I am studying ${this.course}`);
+    }
+}
+
+const ram = new StudentEl('Ram', 2000, 'Btech');
+console.log(ram);
+
+//here we dont have to set the constructor and the prototype it will inherits automatically 
+
+
+//Output 
+
+// StudentEl {_firstName: 'Ram', dob: 2000, course: 'Btech'}
+// course: "Btech"
+// dob: 2000
+// _firstName: "Ram"
+// firstName: "Ram"
+// [[Prototype]]: PersonEl
+// constructor: class StudentEl
+// intoduce: ƒ intoduce()
+// firstName: (...)
+// [[Prototype]]: Object
+// calcAge: ƒ calcAge()
+// constructor: class PersonEl
+// firstName: (...)
+// get firstName: ƒ firstName()
+// set firstName: ƒ firstName(name)
+// [[Prototype]]: Object
+
+//*---------Inheritance using Object.Create---------
+
