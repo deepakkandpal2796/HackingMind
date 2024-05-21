@@ -247,23 +247,23 @@ class Practice {
 
 */
 
-// How do we call setter pra.firstName = value right ?
+// How do we call setter pra.firstName = value.....right ?
 // Here if we can see the constructor is calling the setter this.firstName = firstName
 // then the setter is being called and the firstNamen is passes as attribute to the setter 
 // now we can see that the setter this.firstName = name is again calling the setter
 // So we are in a infinite loop of calling a setter
 
-//? To tackel with this problem we use '_', lets see how 
+//? To tackel with this problem we use '_', lets see how :-
+
 class Practice {
     constructor(firstName){
-        this.firstName = firstName   // We use an underscore to indicate that this property should be accessed through a getter and a setter.
-        //or we can say that to create a new property so that it cant call the same setter again and again now we can see the setter name and the property name are different so the constructor function only calls the function once and then _firstName setter doesnot exist so it will not called again.
+        this.firstName = firstName 
     }
 
     set firstName(name){ 
         this._firstName = name;
     }
-    
+
     get firstName(){
         return this._firstName;
     }
@@ -271,47 +271,123 @@ class Practice {
 
 
 const pra = new Practice('deepak');
+console.log(`firstName : ${pra.firstName}`);
+console.log(`_firstName : ${pra._firstName}`);
+
 console.log(pra);
 
 // Practice {_firstName: 'deepak'}
 // _firstName: "deepak"
-// firstName: (...)
+// firstName: (...) //if i click on this ... it will compute the value 
 // [[Prototype]]: Object
 // pra.fullName -> undefined
 
 
 
+//What is happning in depth 
+// As we are calling the constructor function on the new pra instance created the following happens:
+// In constructor function this.firstName = firstName property executed but there is a firstName setter in the class so this will trigger that.
+// This time inside the setter we have used the _firstName to prevent the infinite calling of the setter. 
+// Now what happens is setter creaate a property _firstname in the new par instance and assign name to it which is nothing but the firstName.
+//? Till now no getter method is defined the firstName is still gonna undefined as it is not set, _firstName is set.
+// console.log(`firstName : ${pra.firstName}`); -> undefined 
+// console.log(`_firstName : ${pra._firstName}`); -> deepak
+//? now we use firstName getter and return the _firstName (which is deepak) into the firstName property which is initiated by the constructor function.
 
-// It mostly used to set data validation 
-// If we are setting a property with the setter then we also have to provide its getter?
-// Yes, that's correct. In JavaScript, when you define a setter for a property, you should also define a getter to make it a "virtual" property that's readable and writable.
 
+//*---------Static method---------
 
-// class Person {
-//     constructor(name, age) {
-//       this.name = name;
-//       this._age = age; // We use an underscore to indicate that this property should be accessed through a getter and a setter.
+//The methods which are declared in the object itself not in the prototype.
+//We can't use them with the new instance created we have to use them using the parent object 
+// For eg
+// Array.from() you cann't do [1,2,3].from this will not work or const dee = new Array(); dee.from();
+// Number.parseInt() is also a static method 
+
+//?Static method in consturctor function
+const Sch = function(standard, section){
+    this.standard = standard;
+    this.section = section;
+}
+
+Sch.intro = function(){
+    console.log(`welcome to our school`);
+}
+
+const mySch = new Sch(1, 'A');
+
+//mySch.into(); //this doesNot exist
+Sch.intro(); //this will work
+//welcome to our school
+
+//?Static method in ES6 class
+class intro {
+    //instance method
+    constructor(firstName){
+        this.firstName = firstName 
+    }
+
+    set firstName(name){ 
+        this._firstName = name;
+    }
+
+    get firstName(){
+        return this._firstName;
+    }
+
+    //static methods
+    static myInto(){
+        console.log(`Hi I am deepak`);
+    }
+}
+const D = new intro('Deepak')
+//D.myInto(); //error
+intro.myInto(); //this will work
+//Hi I am deepak
+
+//*---------Object.create()---------
+
+//? Object.create is a static method of the object class 
+//? It is used to manually ser a prototype of object to any object
+//? So there is prototype inheritance without a constructor function and new keyword.
+
+// const personProto = {
+//     calcAge(){
+//         console.log(2024 - this.dob);
 //     }
-  
-//     // This is the getter for the age property.
-//     get age() {
-//       return this._age;
-//     }
-  
-//     // This is the setter for the age property.
-//     set age(value) {
-//       if (value < 0) {
-//         throw new Error('Age cannot be negative');
-//       }
-//       this._age = value;
-//     }
-//   }
-  
-//   const person = new Person('John', 30);
-//   console.log(person.age); // 30
-//   person.age = -1; // This will throw an error.
+// }
 
-// if we dont provide getter and only setter for a property does that property willl exist in the object?
+// const employee = Object.create(personProto);
+//there is no constructor function so manually setting up the properties
+// employee.firstName = 'Deepak';
+// employee.dob = 1990;
+// employee.calcAge(); //34
+// console.log(employee);
+
+// {firstName: 'Deepak', dob: 1990}
+// [[Prototype]]: Object
+// calcAge: ƒ calcAge()
+// [[Prototype]]: Object
 
 
+//? However we can create a methods inside teh personProto object which can act like a constructor 
 
+
+const personProto = {
+    calcAge(){
+        console.log(2024 - this.dob);
+    },
+    init(firstName, dob){
+        this.firstName = firstName;
+        this.dob = dob;
+    }
+}
+const employee = Object.create(personProto);
+//there is no constructor function so manually setting up the properties
+employee.init('Deepak', 1990);
+employee.calcAge(); //34
+console.log(employee);
+
+// {firstName: 'Deepak', dob: 1990}
+// [[Prototype]]: Object
+// calcAge: ƒ calcAge()
+// [[Prototype]]: Object
