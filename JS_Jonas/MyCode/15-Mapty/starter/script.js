@@ -11,8 +11,11 @@ const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
 
-// navigator.geolocation is a google chrome api which gives you the coordinate of your current location.
+//Global variable
+let mapEvent, map;
+let activityDone, activityDistance, activitytime, activityCadence, activityElevation; 
 
+// navigator.geolocation is a google chrome api which gives you the coordinate of your current location.
 if(navigator.geolocation){
 
     // This is the object which gives the coordinates  this method take two callbaks first is successCallback if the function succeeds then that executes and errorCallback if the error comes then the error one executres (error occurs if you dont want to share your location)
@@ -24,12 +27,13 @@ if(navigator.geolocation){
         const cords = [latitude, longitude]
         // console.log(latitude, longitude);
         // console.log(`https://www.google.com/maps/@${latitude},${longitude},15z?entry=ttu`);
-        
 
         //*Using the leafletjs package
+        // L is reffers as the layer as the map is in the layer foramt please open the documentation and read 
         //map
-        const map = L.map('map').setView(cords, 13);
-        //theme
+         map = L.map('map').setView(cords, 13); //declaring it global as it is going to use in the submit button
+
+        //theme of the map
         L.tileLayer('https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -40,24 +44,93 @@ if(navigator.geolocation){
 
 
         //Event handler on map variable
-        map.on('click', function(mapEvent){
+        map.on('click', function(mapE){
 
-            console.log(mapEvent);
-            const {lat, lng} = mapEvent.latlng;
-            // const marker = L.marker([lat, lng]).addTo(map).bindPopup('Hello world!').openPopup();
-            const marker = L.marker([lat, lng]).addTo(map).bindPopup(L.popup({
-               maxWindth:  250,
-               minWidth: 100,
-               autoClose: false,
-               closeOnClick: false,
-               className: 'running-popup',
-            }))
-            .setPopupContent('Workout')
-            .openPopup();
-
+            form.classList.remove('hidden');
+            inputDistance.focus();
+            mapEvent = mapE; //for using this on submit button
+            
         });
     }, function(){
         console.log(`Error : Can not find your location `);
     })
 
+}
+
+
+inputType.addEventListener('change', function(){
+    inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
+    inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
+})
+
+form.addEventListener('submit', function(e){
+    e.preventDefault();
+    // console.log(mapEvent);
+    const activity = inputType.value;
+    const activityclass = (activity == 'running') ? 'running-popup' : 'cycling-popup'
+
+    const {lat, lng} = mapEvent.latlng;
+    L.marker([lat, lng]).addTo(map).bindPopup(L.popup({
+       maxWindth:  250,
+       minWidth: 100,
+       autoClose: false,
+       closeOnClick: false,
+       className: activityclass,
+    }))
+    .setPopupContent(activity)
+    .openPopup();
+
+    //setting value null
+    // inputDistance.value = inputDuration.value = inputCadence.value = inputElevation.value = '';
+    displayActivity();
+
+})
+
+//setting up current date
+const currentDate = new Date();
+const date = currentDate.getDate();
+const month = currentDate.getMonth();
+// console.log(date, months[month - 1]);
+
+
+//Display activity
+const displayActivity = function(){
+
+    //getting the form data
+    activityDone = inputType.value;
+    const activityEmoji = (activityDone == 'running') ? '🏃‍♂️' : '🚴‍♀️';
+    activityDistance = inputDistance.value;
+    activitytime = inputDuration.value;
+    activityCadence = inputCadence.value;
+    activityElevation = inputElevation.value;
+    form.classList.add('hidden');
+
+    const template = `<li class="workout workout--running" data-id="1234567890">
+    <h2 class="workout__title">${activityDone} on ${month} ${date}</h2>
+    <div class="workout__details">
+      <span class="workout__icon">${activityEmoji}</span>
+      <span class="workout__value">${activityDistance}</span>
+      <span class="workout__unit">km</span>
+    </div>
+    <div class="workout__details">
+      <span class="workout__icon">⏱</span>
+      <span class="workout__value">${activitytime}</span>
+      <span class="workout__unit">min</span>
+    </div>
+    <div class="workout__details">
+      <span class="workout__icon">⚡️</span>
+      <span class="workout__value">${activitytime/activityDistance}</span>
+      <span class="workout__unit">min/km</span>
+    </div>
+    <div class="workout__details">
+      <span class="workout__icon">🦶🏼</span>
+      <span class="workout__value">178</span>
+      <span class="workout__unit">spm</span>
+    </div>`
+
+    const ulElement = document.querySelector('.workouts');
+    ulElement.insertAdjacentHTML('beforeend', template);
+
+    //setting value null
+    inputDistance.value = inputDuration.value = inputCadence.value = inputElevation.value = '';
 }
