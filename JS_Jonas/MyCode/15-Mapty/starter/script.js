@@ -13,7 +13,6 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
 //Global variable
 let mapEvent, map;
-let activityDone, activityDistance, activitytime, activityCadence, activityElevation; 
 
 // navigator.geolocation is a google chrome api which gives you the coordinate of your current location.
 if(navigator.geolocation){
@@ -31,7 +30,7 @@ if(navigator.geolocation){
         //*Using the leafletjs package
         // L is reffers as the layer as the map is in the layer foramt please open the documentation and read 
         //map
-         map = L.map('map').setView(cords, 13); //declaring it global as it is going to use in the submit button
+         map = L.map('map').setView(cords, 14); //declaring it global as it is going to use in the submit button
 
         //theme of the map
         L.tileLayer('https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
@@ -58,16 +57,12 @@ if(navigator.geolocation){
 }
 
 
-inputType.addEventListener('change', function(){
-    inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
-    inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
-})
-
 form.addEventListener('submit', function(e){
     e.preventDefault();
     // console.log(mapEvent);
-    const activity = inputType.value;
-    const activityclass = (activity == 'running') ? 'running-popup' : 'cycling-popup'
+
+    //setting value null
+    inputDistance.value = inputDuration.value = inputCadence.value = inputElevation.value = '';
 
     const {lat, lng} = mapEvent.latlng;
     L.marker([lat, lng]).addTo(map).bindPopup(L.popup({
@@ -75,62 +70,14 @@ form.addEventListener('submit', function(e){
        minWidth: 100,
        autoClose: false,
        closeOnClick: false,
-       className: activityclass,
+       className: 'running-popup',
     }))
-    .setPopupContent(activity)
+    .setPopupContent('Activity')
     .openPopup();
+});
 
-    //setting value null
-    // inputDistance.value = inputDuration.value = inputCadence.value = inputElevation.value = '';
-    displayActivity();
 
+inputType.addEventListener('change', function(){
+    inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
+    inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
 })
-
-//setting up current date
-const currentDate = new Date();
-const date = currentDate.getDate();
-const month = currentDate.getMonth();
-// console.log(date, months[month - 1]);
-
-
-//Display activity
-const displayActivity = function(){
-
-    //getting the form data
-    activityDone = inputType.value;
-    const activityEmoji = (activityDone == 'running') ? '🏃‍♂️' : '🚴‍♀️';
-    activityDistance = inputDistance.value;
-    activitytime = inputDuration.value;
-    activityCadence = inputCadence.value;
-    activityElevation = inputElevation.value;
-    form.classList.add('hidden');
-
-    const template = `<li class="workout workout--running" data-id="1234567890">
-    <h2 class="workout__title">${activityDone} on ${month} ${date}</h2>
-    <div class="workout__details">
-      <span class="workout__icon">${activityEmoji}</span>
-      <span class="workout__value">${activityDistance}</span>
-      <span class="workout__unit">km</span>
-    </div>
-    <div class="workout__details">
-      <span class="workout__icon">⏱</span>
-      <span class="workout__value">${activitytime}</span>
-      <span class="workout__unit">min</span>
-    </div>
-    <div class="workout__details">
-      <span class="workout__icon">⚡️</span>
-      <span class="workout__value">${activitytime/activityDistance}</span>
-      <span class="workout__unit">min/km</span>
-    </div>
-    <div class="workout__details">
-      <span class="workout__icon">🦶🏼</span>
-      <span class="workout__value">178</span>
-      <span class="workout__unit">spm</span>
-    </div>`
-
-    const ulElement = document.querySelector('.workouts');
-    ulElement.insertAdjacentHTML('beforeend', template);
-
-    //setting value null
-    inputDistance.value = inputDuration.value = inputCadence.value = inputElevation.value = '';
-}
